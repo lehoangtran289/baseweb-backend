@@ -56,6 +56,8 @@ public class UserLogin {
 
     private Date disabledDateTime;
 
+    // -----------------------------------
+
     public UserLogin() {
     }
 

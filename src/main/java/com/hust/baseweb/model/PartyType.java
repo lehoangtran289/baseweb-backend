@@ -26,6 +26,8 @@ public class PartyType {
     private Date createdStamp;
     private Date lastUpdatedStamp;
 
+    // -----------------------------------
+
     public PartyType() {
     }
 

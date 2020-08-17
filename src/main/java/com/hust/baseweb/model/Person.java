@@ -38,6 +38,8 @@ public class Person {
     @Transient
     private String userName;
 
+    // -----------------------------------
+
     public Person(UUID partyId, String firstName, String middleName, String lastName, String gender,
                   Date birthDate) {
         this.partyId = partyId;

@@ -71,6 +71,8 @@ public class Party {
     @Transient
     private Person person;
 
+    // -----------------------------------
+
     public Party(String partyCode, PartyType type, String description, Status partyStatus, boolean isUnread) {
         super();
         this.partyCode = partyCode;
