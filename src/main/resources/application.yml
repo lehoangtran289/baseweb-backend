@@ -1,1 +1,13 @@
 
+logging:
+  file:
+    path: logs
+    name: baseweb.log
+  level:
+    root: INFO
+    com:
+      hust :
+        baseweb : DEBUG
+    org:
+      springframework: INFO
+  config: classpath:logback-dev.xml
