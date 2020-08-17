@@ -63,8 +63,8 @@ public class Party {
     @Transient
     private String userName;
 
-    // create partyname show in party list; party = person.firstname +
-    // person.middlename + person.lastname
+    // create partyname show in party list;
+    // party = person.firstname + person.middlename + person.lastname
     @Transient
     private String partyName;
 
