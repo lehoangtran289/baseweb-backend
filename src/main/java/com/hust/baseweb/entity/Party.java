@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -63,13 +63,15 @@ public class Party {
     @Transient
     private String userName;
 
-    // create partyname show in party list; party = person.firstname +
-    // person.middlename + person.lastname
+    // create partyname show in party list;
+    // party = person.firstname + person.middlename + person.lastname
     @Transient
     private String partyName;
 
     @Transient
     private Person person;
+
+    // -----------------------------------
 
     public Party(String partyCode, PartyType type, String description, Status partyStatus, boolean isUnread) {
         super();

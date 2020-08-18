@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +37,8 @@ public class Person {
 
     @Transient
     private String userName;
+
+    // -----------------------------------
 
     public Person(UUID partyId, String firstName, String middleName, String lastName, String gender,
                   Date birthDate) {

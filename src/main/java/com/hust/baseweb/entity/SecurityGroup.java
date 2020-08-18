@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +26,8 @@ public class SecurityGroup {
     private Date createdStamp;
 
     private Date lastUpdatedStamp;
+
+    // -----------------------------------
 
     public SecurityGroup() {
     }

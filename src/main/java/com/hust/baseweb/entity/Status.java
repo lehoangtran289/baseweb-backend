@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +29,8 @@ public class Status {
     private Date createdStamp;
 
     private Date lastUpdatedStamp;
+
+    // -----------------------------------
 
     public Status(String id, StatusType type, String statusCode, String sequenceId, String description) {
         this.id = id;

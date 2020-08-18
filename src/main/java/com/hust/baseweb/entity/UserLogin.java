@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -55,6 +55,8 @@ public class UserLogin {
     private Set<SecurityGroup> roles;
 
     private Date disabledDateTime;
+
+    // -----------------------------------
 
     public UserLogin() {
     }
