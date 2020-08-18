@@ -1,6 +1,6 @@
 package com.hust.baseweb.config;
 
-import com.hust.baseweb.model.UserLogin;
+import com.hust.baseweb.entity.UserLogin;
 import com.hust.baseweb.service.BaseWebUserDetailService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

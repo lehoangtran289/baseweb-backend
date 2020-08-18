@@ -1,7 +1,7 @@
 package com.hust.baseweb.service;
 
-import com.hust.baseweb.model.SecurityGroup;
-import com.hust.baseweb.model.UserLogin;
+import com.hust.baseweb.entity.SecurityGroup;
+import com.hust.baseweb.entity.UserLogin;
 import com.hust.baseweb.repo.UserLoginRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

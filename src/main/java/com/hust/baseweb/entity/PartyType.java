@@ -1,7 +1,6 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;

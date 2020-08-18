@@ -1,6 +1,6 @@
 package com.hust.baseweb.repo;
 
-import com.hust.baseweb.model.SecurityGroup;
+import com.hust.baseweb.entity.SecurityGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
