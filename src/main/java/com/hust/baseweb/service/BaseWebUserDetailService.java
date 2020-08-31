@@ -23,11 +23,16 @@ public class BaseWebUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserLogin user = userLoginRepo.findByUserLoginIdOrEmail(s, s);
-        List<GrantedAuthority> authorities =
-                AuthorityUtils.createAuthorityList(
-                        user.getRoles().stream().map(SecurityGroup::getGroupId).toArray(String[]::new));
 
-        return new User(user.getUserLoginId(), user.getPassword(), authorities);
+        if (user != null && user.isEnabled()) {
+            List<GrantedAuthority> authorities =
+                    AuthorityUtils.createAuthorityList(
+                            user.getRoles().stream().map(SecurityGroup::getGroupId).toArray(String[]::new));
+
+            return new User(user.getUserLoginId(), user.getPassword(), authorities);
+        } else {
+            throw new UsernameNotFoundException("Username Not Found");
+        }
 
     }
 
