@@ -1,5 +1,7 @@
 package com.hust.baseweb.test;
 
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.domain.Page;
@@ -10,7 +12,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.SingleValueBinding;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
@@ -22,6 +23,10 @@ public interface AuthorRepo extends JpaRepository<Author, Long>, QuerydslPredica
 
     Optional<Author> findById(Long authorId);
 
+    // customized querydsl
+    Page<Author> findAll(Predicate predicate, Pageable pageable);
+
+    // http://127.0.0.1:8080/api/authors/search/nameStartsWith{?authorName}
     @RestResource(path = "nameStartsWith")
     Optional<Author> findByAuthorNameStartsWith(String authorName);
 
@@ -29,10 +34,23 @@ public interface AuthorRepo extends JpaRepository<Author, Long>, QuerydslPredica
     @Query("select a from Author a join a.books b where b.bookId = ?1")
     Page<Author> findByBookId(Long bookId, Pageable pageable);
 
+    // http://127.0.0.1:8080/api/authors?authorName=or&authorId=1
+    // klq den customized querydsl
     @Override
     default void customize(final QuerydslBindings bindings, final QAuthor root) {
-        bindings
-                .bind(String.class)
+        // AND
+        bindings.bind(root.authorName)
                 .first((SingleValueBinding<StringPath, String>) StringExpression::containsIgnoreCase);
+
+        bindings.bind(root.authorId).first(new SingleValueBinding<NumberPath<Long>, Long>() {
+            @Override
+            public Predicate bind(NumberPath<Long> path, Long value) {
+                return path.eq(value);
+            }
+        });
+
+        // OR
+        // https://stackoverflow.com/questions/55723080/querydsl-predicate-bindings-or-between-multiple-path
+
     }
 }
