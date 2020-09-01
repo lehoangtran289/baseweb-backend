@@ -31,7 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()       // any request has to be authenticated
+        http.authorizeRequests()
+                .regexMatchers("/v2/api-docs").permitAll()
+                .regexMatchers("/.*swagger.*").permitAll()
+                .regexMatchers(".*/user/register/*$").permitAll()
+                .anyRequest().authenticated()       // any request has to be authenticated
                 .and().httpBasic()
                 .authenticationEntryPoint(basicAuthenticationEntryPoint) // return 401 if unauthenticated
                 .and().csrf().disable()
