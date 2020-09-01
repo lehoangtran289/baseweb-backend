@@ -1,5 +1,6 @@
 package com.hust.baseweb.config;
 
+import com.hust.baseweb.entity.PartyType;
 import com.hust.baseweb.rest.user.DPerson;
 import com.hust.baseweb.rest.user.DPersonUserLogin;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -13,5 +14,6 @@ public class RestConfig implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration restConfig) {
         restConfig.exposeIdsFor(DPerson.class);
         restConfig.exposeIdsFor(DPersonUserLogin.class);
+        restConfig.exposeIdsFor(PartyType.class);
     }
 }
