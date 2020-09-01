@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.rest.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hust.baseweb.entity.Party;
@@ -26,7 +26,6 @@ public class DPersonUserLogin {
     @JsonIgnore
     private Party party;
 
-
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_login_security_group",
@@ -35,9 +34,7 @@ public class DPersonUserLogin {
     private List<SecurityGroup> roles;
     private Date disabledDateTime;
 
-
     private Date createdStamp;
-
 
     private Date lastUpdatedStamp;
 }

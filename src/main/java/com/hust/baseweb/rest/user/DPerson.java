@@ -1,4 +1,4 @@
-package com.hust.baseweb.model;
+package com.hust.baseweb.rest.user;
 
 import com.hust.baseweb.entity.PartyType;
 import com.hust.baseweb.entity.Person;
