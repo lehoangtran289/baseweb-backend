@@ -12,6 +12,10 @@ server:
     context-path: '/api'
 
 spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${SQL_DB_HOST}:${SQL_DB_PORT}/${POSTGRES_DB}

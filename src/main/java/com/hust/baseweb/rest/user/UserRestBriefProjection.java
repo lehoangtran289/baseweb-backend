@@ -1,5 +1,7 @@
 package com.hust.baseweb.rest.user;
 
+import com.hust.baseweb.entity.PartyType;
+import com.hust.baseweb.entity.Person;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -9,17 +11,14 @@ import java.util.Date;
 public interface UserRestBriefProjection {
     String getPartyCode();
 
-    @Value("#{target.person.firstName} #{target.person.lastName}")
-    String getFullName();
+    PersonProjection getPerson();
 
-    @Value("#{target.userLogin.userLoginId}")
-    String getUserLoginId();
+    UserLoginProjection getUserLogin();
 
     @Value("#{target.createdDate}")
     Date getCreatedDate();
 
-    @Value("#{target.partyType.partyTypeId}")
-    String getPartyType();
+    PartyTypeProjection getPartyType();
 
     String getStatus();
 

@@ -1,7 +1,6 @@
 package com.hust.baseweb.rest.user;
 
 import com.hust.baseweb.entity.PartyType;
-import com.hust.baseweb.model.QDPerson;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.UUID;
 
-@RepositoryRestResource(excerptProjection = UserRestBriefProjection.class)
+@RepositoryRestResource(path = "DPersons", excerptProjection = UserRestBriefProjection.class)
 public interface UserRestRepository extends JpaRepository<DPerson, UUID>, QuerydslPredicateExecutor<DPerson>,
         QuerydslBinderCustomizer<QDPerson> {
 
