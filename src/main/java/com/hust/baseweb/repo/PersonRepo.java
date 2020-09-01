@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository
 public interface PersonRepo extends JpaRepository<Person, UUID> {
     Person findByPartyId(UUID partyId);
 }
