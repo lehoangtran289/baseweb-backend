@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserRestBriefProjection> findPersonByFullName(Pageable page, String sString) {
-        return null;
+        return userRestRepository.findByPartyTypeAndStatusAndFullNameLike(page,
+                PartyType.PartyTypeEnum.PERSON.name(), Status.StatusEnum.PARTY_ENABLED.name(), sString);
     }
 
     @Override

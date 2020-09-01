@@ -12,6 +12,7 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.querydsl.binding.SingleValueBinding;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
 
@@ -21,8 +22,9 @@ public interface UserRestRepository extends JpaRepository<DPerson, UUID>, Queryd
 
     Page<DPerson> findByPartyType(PartyType partyType, Pageable pageable);
 
-    @Query("select p from DPerson p where p.partyType.partyTypeId = ?2 and p.status.id = ?3 and COALESCE" +
-            "(concat(trim(p.person.firstName), trim(p.person.middleName), trim(p.person.lastName)),'') like ?4")
+    @Query("select p from DPerson p where p.partyType.partyTypeId = :type and p.status.id = :status and " +
+            "COALESCE(concat(trim(p.person.firstName), trim(p.person.middleName), trim(p.person.lastName)),'') " +
+            "like %:fullNameString%")
     Page<UserRestBriefProjection> findByPartyTypeAndStatusAndFullNameLike(Pageable page, String type,
                                                                           String status, String fullNameString);
 
