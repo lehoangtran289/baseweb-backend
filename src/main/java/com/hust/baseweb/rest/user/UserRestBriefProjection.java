@@ -18,11 +18,8 @@ public interface UserRestBriefProjection {
     @Value("#{target.createdDate}")
     Date getCreatedDate();
 
-//    @Value("#{target.partyType.partyTypeId}")
-//    String getPartyType();
     PartyTypeProjection getPartyType();
 
-    //  @Value("#{target.status.description}")
     String getStatus();
 
     String getPartyId();
