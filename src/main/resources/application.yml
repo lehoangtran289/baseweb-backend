@@ -32,5 +32,8 @@ logging:
       hust :
         baseweb : DEBUG
     org:
+#      hibernate:
+#        SQL: DEBUG
+#        type: TRACE
       springframework: INFO
   config: classpath:logback-dev.xml
