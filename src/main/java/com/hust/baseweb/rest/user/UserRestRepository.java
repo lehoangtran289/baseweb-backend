@@ -23,7 +23,7 @@ public interface UserRestRepository extends JpaRepository<DPerson, UUID>, Queryd
 
     @Query("select p from DPerson p where p.partyType.partyTypeId = :type and p.status.id = :status and lower" +
             "(COALESCE(concat(trim(p.person.firstName), trim(p.person.middleName), trim(p.person.lastName)), " +
-            "'')) like CONCAT('%',lower(:fullNameString),'%') ")
+            "'')) like lower(CONCAT('%',:fullNameString,'%')) ")
     Page<UserRestBriefProjection> findByPartyTypeAndStatusAndFullNameLike(Pageable page, String type,
                                                                           String status, String fullNameString);
 
