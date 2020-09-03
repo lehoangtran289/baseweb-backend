@@ -14,7 +14,7 @@ thoat khoi may chua B postgres, cmd: exit
 
 #build baseweb-backend
 dung lenh mvn de build ra file *.jar
-	cmd: mvn package -Dmaven.test.skip=true (keo dependency)
+	cmd: mvn clean package -Dmaven.test.skip=true (keo dependency)
 	cmd: docker build -t dms .   (de build image ten baseweb, dong goi environment va file app *.jar trong image)
 	(Xem config Dockerfile)
 
