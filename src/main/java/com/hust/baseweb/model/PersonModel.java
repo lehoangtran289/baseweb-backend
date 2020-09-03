@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,4 +23,5 @@ public class PersonModel {
     private String middleName;
     private String gender;
     private Date birthDate;
+
 }

@@ -16,10 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -31,11 +29,13 @@ public class UserServiceImpl implements UserService {
     private final PartyTypeRepo partyTypeRepo;
     private final PartyRepo partyRepo;
     private final StatusRepo statusRepo;
+    private final StatusItemRepo statusItemRepo;
     private final PersonRepo personRepo;
     private final SecurityGroupRepo securityGroupRepo;
-    private UserLoginRepo userLoginRepo;
-    private UserRestRepository userRestRepository;
-    private PartyService partyService;
+    private final UserLoginRepo userLoginRepo;
+    private final UserRestRepository userRestRepository;
+    private final UserRegisterRepo userRegisterRepo;
+    private final PartyService partyService;
 
     @Override
     public UserLogin findById(String userLoginId) {
@@ -126,4 +126,58 @@ public class UserServiceImpl implements UserService {
         Party party = partyService.findByPartyId(partyId);
         return userLoginRepo.findByParty(party).get(0);
     }
+
+    @Override
+    public UserRegister.OutputModel registerUser(UserRegister.InputModel inputModel) {
+        String userLoginId = inputModel.getUserLoginId();
+        String email = inputModel.getEmail();
+
+        if (userRegisterRepo.existsByUserLoginIdOrEmail(userLoginId, email)
+                || userLoginRepo.existsById(userLoginId)) {
+            return new UserRegister.OutputModel();
+        }
+
+        StatusItem userRegistered = statusItemRepo.findById("USER_REGISTERED")
+                .orElseThrow(NoSuchElementException::new);
+        UserRegister userRegister = inputModel.createUserRegister(userRegistered);
+        userRegister = userRegisterRepo.save(userRegister);
+
+        return userRegister.toOutputModel();
+    }
+
+    @Override
+    public boolean approveRegisterUser(String userLoginId) {
+        UserRegister userRegister = userRegisterRepo.findById(userLoginId).orElse(null);
+        if (userRegister == null)
+            return false;
+
+        try {
+            createAndSaveUserLogin(new PersonModel(
+                    userRegister.getUserLoginId(), userRegister.getPassword(),
+                    new ArrayList<>(), userRegister.getUserLoginId(),
+                    userRegister.getFirstName(), userRegister.getLastName(), userRegister.getMiddleName(),
+                    null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        StatusItem userApproved =
+                statusItemRepo.findById("USER_APPROVED").orElseThrow(NoSuchElementException::new);
+        userRegister.setStatusItem(userApproved);
+        userRegisterRepo.save(userRegister);
+        return true;
+    }
+
+    @Override
+    public List<UserRegister.OutputModel> findAllRegisterUser() {
+        StatusItem userRegistered =
+                statusItemRepo.findById("USER_REGISTERED").orElseThrow(NoSuchElementException::new);
+        if (userRegistered != null) {
+            List<UserRegister> userRegisters = userRegisterRepo.findAllByStatusItem(userRegistered);
+            return userRegisters.stream().map(UserRegister::toOutputModel).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
+    }
+
 }

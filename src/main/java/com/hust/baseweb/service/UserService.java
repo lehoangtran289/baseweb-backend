@@ -2,6 +2,7 @@ package com.hust.baseweb.service;
 
 import com.hust.baseweb.entity.Party;
 import com.hust.baseweb.entity.UserLogin;
+import com.hust.baseweb.entity.UserRegister;
 import com.hust.baseweb.model.PersonModel;
 import com.hust.baseweb.model.PersonUpdateModel;
 import com.hust.baseweb.rest.user.DPerson;
@@ -30,5 +31,11 @@ public interface UserService {
     Party update(PersonUpdateModel personUpdateModel, UUID partyId);
 
     UserLogin findUserLoginByPartyId(UUID partyId);
+
+    UserRegister.OutputModel registerUser(UserRegister.InputModel inputModel);
+
+    boolean approveRegisterUser(String userLoginId);
+
+    List<UserRegister.OutputModel> findAllRegisterUser();
 
 }
