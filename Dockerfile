@@ -1,3 +1,4 @@
+# used to run Maven and build the fat jar, then unpack it.
 FROM openjdk:8-jdk-alpine as build
 WORKDIR /workspace/app
 
@@ -12,6 +13,8 @@ COPY src src
 
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+# ###########
 
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
