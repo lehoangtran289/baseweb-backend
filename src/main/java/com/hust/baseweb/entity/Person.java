@@ -68,6 +68,10 @@ public class Person {
                 '}';
     }
 
+    public String getFullName() {
+        return firstName + " " + middleName + " " + lastName;
+    }
+
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
