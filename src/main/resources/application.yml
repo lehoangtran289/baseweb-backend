@@ -12,6 +12,10 @@ server:
     context-path: '/api'
 
 spring:
+  data:
+    rest:
+      detection-strategy: annotated
+
   jackson:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
