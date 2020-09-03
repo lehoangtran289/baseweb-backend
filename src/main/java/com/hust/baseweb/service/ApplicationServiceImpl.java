@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -25,23 +26,24 @@ public class ApplicationServiceImpl implements ApplicationService {
     public List<Application> getListByTypeAndPermission(String applicationType,
                                                         List<SecurityPermission> permissions) {
 
-        String permissionStr = permissions.stream().map(p -> p.getPermissionId())
+        String permissionStr = permissions.stream().map(SecurityPermission::getPermissionId)
                 .collect(Collectors.joining(", "));
+        log.info("getListByPermissionAndType, permissionList = " + permissionStr + ", type = " + applicationType);
 
-        List<Application> applicationList = applicationRepo
-                .findByApplicationTypeAndSecurityPermissionIn(applicationRepo.getOne(applicationType),
-                        permissions);
+        List<Application> applicationList = applicationRepo.findByApplicationTypeAndSecurityPermissionIn(
+                applicationTypeRepo.getOne(applicationType), permissions);
 
         List<Application> applicationList1 = applicationList.stream().map(Application::getModule)
                 .collect(Collectors.toList());
+        log.info("ApplicationList.sz = " + applicationList.size() + ", ApplicationList1.sz = " + applicationList1.size());
 
-        List<Application> applicationList2 = applicationList1.stream().filter(app -> app.getModule() != null)
-                .map(app -> app.getModule()).collect(Collectors.toList());
+        List<Application> applicationList2 = new ArrayList<>();
+        applicationList1.forEach(application -> {
+            if (application != null && application.getModule() != null)
+                applicationList2.add(application.getModule());
+        });
 
-        log.info("getListByTypeAndPermission, permissionList = " + permissionStr + ", type = " + applicationType +
-                ", applicationList.sz = " + applicationList.size() + ", applicationModuleList1.sz = "
-                + applicationList1.size() + ", applicationModuleList2.sz = "
-                + applicationList2.size());
+        log.info("applicationModuleList2.sz = " + applicationList2.size());
 
         applicationList.addAll(applicationList1);
         applicationList.addAll(applicationList2);
