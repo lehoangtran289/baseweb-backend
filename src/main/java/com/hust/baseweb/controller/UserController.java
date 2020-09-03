@@ -42,8 +42,11 @@ public class UserController {
     public ResponseEntity<?> getUsers(Principal principal, Pageable page,
                                       @RequestParam(name = "search", required = false) String search,
                                       @RequestParam(name = "filter", required = false) String filter) {
-        log.info("::getUsers, searchString = " + search);
-        return ResponseEntity.ok().body(userService.findPersonByFullName(page, search));
+        if (search != null) {
+            log.info("::getUsers, searchString = " + search);
+            return ResponseEntity.ok().body(userService.findPersonByFullName(page, search));
+        }
+        return ResponseEntity.ok().body(userService.findAll(page));
     }
 
 
