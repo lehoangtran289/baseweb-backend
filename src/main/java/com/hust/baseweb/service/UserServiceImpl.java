@@ -54,6 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Page<UserRestBriefProjection> findAll(Pageable page) {
+        return userRestRepository.findAllDPerson(page);
+    }
+
+    @Override
     public List<UserLogin> getAllUserLogins() {
         return userLoginRepo.findAll();
     }
