@@ -1,0 +1,61 @@
+version: '3'
+
+volumes:
+  baseweb_data: {}
+  
+services:
+    
+#    nginx:
+#        container_name: gateway
+#        image: gateway:latest
+#        ports:
+#          - '80:80'
+#        volumes:
+#          - /var/run/docker.sock:/tmp/docker.sock:ro
+
+    dms:
+        container_name: dms
+        image: dms:latest
+        ports:
+          - 8080:8080
+        environment:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://pgsql:5432/baseweb2
+#        restart: always
+        links:
+          - "pgsql:pgsql"
+          - "redis:redis"
+
+    pgsql:
+      image: postgres:9.5
+      container_name: pgsql
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=123456
+        - POSTGRES_DB=baseweb2
+        - PGDATA=/var/lib/postgresql/data/pgdata
+      volumes:
+        - baseweb_data:/var/lib/postgresql/data
+      ports:
+        - 5000:5432
+#      restart: always
+
+#    basewebfrontend:
+#        container_name: basewebfrontend
+#        image: basewebfrontend:latest
+#        expose:
+#        - "80"
+        
+    redis:
+        container_name: redis
+        image: "redis:alpine"
+        command: ["redis-server"]
+        ports:
+          - "6379:6379"
+
+#    mongodb:
+#        container_name: mongodb
+#        image: mongo:latest
+#        ports:
+#          - 27017:27017
+#        volumes:
+#          - baseweb_data:/var/lib/mongodb/data
