@@ -1,31 +1,33 @@
--cd project/dev-core-dms
--git pull origin dev-core-dms
+$cd project/dev-core-dms
+$git pull origin dev-core-dms
 
--cmd: docker ps (cho phép xem các containers đang chạy trên server)
+$ docker ps (check currently running containers on docker server)
 
 #build postgres DB
-access vào postgres (coi như access vào máy cài postgres),
--cmd: docker exec -it pgsql bash
--cmd: psql dms -U postgres  (de vao postgres, DB la dms)
--cmd: \dt (show cac tables trong DB)
-chay cac sql script de tao tables, update data
-thoat khoi DB, cmd: \q (se ve may chua database postgres)
-thoat khoi may chua B postgres, cmd: exit
+access into docker postgres container
+$ docker exec -it pgsql bash
+$ psql dms -U postgres  (User <postgres>, Database <dms>)
+$ \dt (show tables)
+run sql script to build schemas, update data (on Windows -> ip: 192.168.99.100 ~ 0.0.0.0)
+Exit DB
+$ \q
+$ exit
 
 #build baseweb-backend
-dung lenh mvn de build ra file *.jar
-	cmd: mvn clean package -Dmaven.test.skip=true (keo dependency)
-	cmd: docker build -t dms .   (de build image ten baseweb, dong goi environment va file app *.jar trong image)
-	(Xem config Dockerfile)
+build *.jar
+$ mvn clean package -Dmaven.test.skip=true (skip test)
+$ docker build -t dms .
+(build <dms> image with Dockerfile, package environment var and app *.jar inside image)
 
 #build baseweb-frontend
--cd project/basewebfrontend
--git pull origin dev-core-dms
--build image
-	cmd: docker build -t basewebfrontend .
-	
-de xem cac docker image tai ve tren may, cmd: docker image ls
-Access vao thu muc deploy, cmd: cd ~/projects/deploy/baseweb
--cmd: docker-compose up -d   (de start cac component moi, duoc update, cac component cu, ko duoc update thi ko restart)
--cmd: docker logs dms (xem log tam thoi)
+$ cd project/basewebfrontend
+$ git pull origin dev-core-dms
+build <basewebfrontend> image
+$ docker build -t basewebfrontend .
+
+show docker images
+$ docker image ls || $ docker images -a
+$ docker-compose up -d   (de start cac component moi, duoc update, cac component cu, ko duoc update thi ko
+restart)
+$ docker logs dms (show temp logs)
 
