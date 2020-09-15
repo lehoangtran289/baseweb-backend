@@ -1,0 +1,33 @@
+$cd project/dev-core-dms
+$git pull origin dev-core-dms
+
+$ docker ps (check currently running containers on docker server)
+
+#build postgres DB
+access into docker postgres container
+$ docker exec -it pgsql bash
+$ psql dms -U postgres  (User <postgres>, Database <dms>)
+$ \dt (show tables)
+run sql script to build schemas, update data (on Windows -> ip: 192.168.99.100 ~ 0.0.0.0)
+Exit DB
+$ \q
+$ exit
+
+#build baseweb-backend
+build *.jar
+$ mvn clean package -Dmaven.test.skip=true (skip test)
+$ docker build -t dms .
+(build <dms> image with Dockerfile, package environment var and app *.jar inside image)
+
+#build baseweb-frontend
+$ cd project/basewebfrontend
+$ git pull origin dev-core-dms
+build <basewebfrontend> image
+$ docker build -t basewebfrontend .
+
+show docker images
+$ docker image ls || $ docker images -a
+$ docker-compose up -d   (de start cac component moi, duoc update, cac component cu, ko duoc update thi ko
+restart)
+$ docker logs dms (show temp logs)
+

@@ -20,6 +20,8 @@ public interface UserService {
 
     Page<UserRestBriefProjection> findPersonByFullName(Pageable page, String sString);
 
+    Page<UserRestBriefProjection> findAll(Pageable page);
+
     List<UserLogin> getAllUserLogins();
 
     UserLogin createAndSaveUserLogin(String userName, String password);
@@ -37,5 +39,4 @@ public interface UserService {
     boolean approveRegisterUser(String userLoginId);
 
     List<UserRegister.OutputModel> findAllRegisterUser();
-
 }
