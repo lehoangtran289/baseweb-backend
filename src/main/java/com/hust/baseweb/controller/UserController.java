@@ -8,7 +8,6 @@ import com.hust.baseweb.model.DPersonDetailModel;
 import com.hust.baseweb.model.PersonModel;
 import com.hust.baseweb.model.PersonUpdateModel;
 import com.hust.baseweb.rest.user.DPerson;
-import com.hust.baseweb.rest.user.UserRestRepository;
 import com.hust.baseweb.service.PartyService;
 import com.hust.baseweb.service.SecurityGroupService;
 import com.hust.baseweb.service.UserService;
@@ -48,7 +47,6 @@ public class UserController {
         }
         return ResponseEntity.ok().body(userService.findPersonByFullName(page, ""));
     }
-
 
     @GetMapping(path = "/users/{partyId}")
     public ResponseEntity<?> getUserDetail(Principal principal, @PathVariable String partyId) {
