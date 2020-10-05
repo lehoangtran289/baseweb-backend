@@ -46,7 +46,7 @@ public class UserController {
             log.info("::getUsers, searchString = " + search);
             return ResponseEntity.ok().body(userService.findPersonByFullName(page, search));
         }
-        return ResponseEntity.ok().body(userService.findAll(page));
+        return ResponseEntity.ok().body(userService.findPersonByFullName(page, ""));
     }
 
 
