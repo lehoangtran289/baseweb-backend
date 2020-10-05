@@ -6,6 +6,7 @@ import com.hust.baseweb.entity.SecurityGroup;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class DPersonUserLogin {
     @Id
     @Column(name = "user_login_id", updatable = false, nullable = false)
     private String userLoginId;
+
+    @Email
+    private String email;
 
     private boolean isSystem;
 

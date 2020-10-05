@@ -25,6 +25,7 @@ public class DPersonDetailModel extends RepresentationModel<DPersonDetailModel> 
     private Date createdDate;
     private Date birthDate;
     private String userLoginId;
+    private String email;
     private String partyCode;
     private List<String> roles;
 
@@ -52,6 +53,7 @@ public class DPersonDetailModel extends RepresentationModel<DPersonDetailModel> 
         this.partyType = p.getPartyType().getPartyTypeId();
         this.createdDate = p.getCreatedDate();
         this.userLoginId = p.getUserLogin().getUserLoginId();
+        this.email = p.getUserLogin().getEmail();
         this.partyCode = p.getPartyCode();
         this.roles = p.getUserLogin().getRoles().stream()
                 .map(r -> r.getGroupId()).collect(Collectors.toList());
