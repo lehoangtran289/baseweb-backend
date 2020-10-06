@@ -55,10 +55,12 @@ public class ApiController {
     }
 
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(Principal principal, @RequestBody ChangePasswordModel passwordModel) {
+    public ResponseEntity<?> changePassword(Principal principal,
+                                            @RequestBody ChangePasswordModel passwordModel) {
         UserLogin userLogin = userService.findById(principal.getName());
         if (UserLogin.PASSWORD_ENCODER.matches(passwordModel.getCurrentPassword(), userLogin.getPassword())) {
-            UserLogin user = userService.updatePassword(userLogin, passwordModel.getNewPassword());
+            UserLogin user = userService.updatePassword(userLogin,
+                    UserLogin.PASSWORD_ENCODER.encode(passwordModel.getNewPassword()));
             return ResponseEntity.ok().body("");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password isn't correct");
