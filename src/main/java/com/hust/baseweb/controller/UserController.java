@@ -81,7 +81,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(party.getPartyId());
     }
 
-    @PutMapping(path = "/user/{partyId}")
+    @PutMapping(path = "/users/{partyId}")
     public ResponseEntity<?> update(Principal principal, @RequestBody PersonUpdateModel personUpdateModel,
                                     @PathVariable String partyId) {
 

@@ -18,17 +18,17 @@ public class UserRegisterController {
 
     private UserService userService;
 
-    @GetMapping("/user/get-all-register-user")
+    @GetMapping("/users/get-all-register-user")
     public ResponseEntity<List<UserRegister.OutputModel>> findAllRegisterUser() {
         return ResponseEntity.ok(userService.findAllRegisterUser());
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/users/register")
     public ResponseEntity<UserRegister.OutputModel> registerUser(@RequestBody UserRegister.InputModel inputModel) {
         return ResponseEntity.ok(userService.registerUser(inputModel));
     }
 
-    @GetMapping("/user/approve-register/{userLoginId}")
+    @GetMapping("/users/approve-register/{userLoginId}")
     public ResponseEntity<Boolean> approveRegisterUser(@PathVariable String userLoginId) {
         return ResponseEntity.ok(userService.approveRegisterUser(userLoginId));
     }
