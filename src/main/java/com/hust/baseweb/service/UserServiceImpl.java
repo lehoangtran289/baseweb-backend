@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
         log.info("save, roles = " + personModel.getRoles().size());
 
         UserLogin userLogin = new UserLogin(personModel.getUserName(), personModel.getEmail(),
-                personModel.getPassword(), true, roles);
+                UserLogin.PASSWORD_ENCODER.encode(personModel.getPassword()), true, roles);
         userLogin.setParty(party);
         if (userLoginRepo.existsByUserLoginIdOrEmail(personModel.getUserName(), personModel.getEmail())) {
             throw new RuntimeException();
