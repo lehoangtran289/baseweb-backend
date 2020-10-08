@@ -100,7 +100,7 @@ public class CovidDataService {
             }
 //            System.out.println(locationStat);
             dataList.add(locationStat);
-            Collections.sort(dataList, Collections.reverseOrder());
+            dataList.sort(Collections.reverseOrder());
         }
     }
 }
