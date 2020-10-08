@@ -17,6 +17,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -97,7 +98,9 @@ public class CovidDataService {
                     break;
                 }
             }
-            System.out.println(locationStat);
+//            System.out.println(locationStat);
+            dataList.add(locationStat);
+            Collections.sort(dataList, Collections.reverseOrder());
         }
     }
 }
