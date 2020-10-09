@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CovidReponseModel {
-    private List<LocationStat> dataList;
     private int totalCases;
     private int totalDeaths;
     private int totalRecovers;
