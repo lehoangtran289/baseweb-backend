@@ -18,5 +18,4 @@ public class CovidReponseModel {
     private int totalDeaths;
     private int totalRecovers;
     private int totalDiffFromPrevDay;
-    private Date date;
 }

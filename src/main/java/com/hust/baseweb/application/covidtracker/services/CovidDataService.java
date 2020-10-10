@@ -77,9 +77,9 @@ public class CovidDataService {
             locationStat.setState(record.get("Province/State"));
 
             int latestCases = Integer.parseInt("0" + record.get(record.size() - 1));
-            int prevCases = Integer.parseInt("0" + record.get(record.size() - 2));
+            int prevDayCases = Integer.parseInt("0" + record.get(record.size() - 2));
             locationStat.setTotalCases(latestCases);
-            locationStat.setDiffFromPrevDay(prevCases);
+            locationStat.setDiffFromPrevDay(latestCases - prevDayCases);
 
             for (CSVRecord death : deaths) {
                 if (death.get("Province/State").equals(record.get("Province/State"))

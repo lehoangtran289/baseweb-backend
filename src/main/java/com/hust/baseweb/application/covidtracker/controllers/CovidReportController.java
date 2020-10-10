@@ -52,7 +52,7 @@ public class CovidReportController {
             }
         }
         Page<LocationStat> page = new PageImpl<>(dataList.subList(start, end), pageable, dataList.size());
-        return ResponseEntity.ok(page);
+        return ResponseEntity.ok().body(page);
     }
 
     @GetMapping("/covid/data-general")
@@ -64,8 +64,8 @@ public class CovidReportController {
         int totalDiffFromPrevDay = dataList.stream().mapToInt(LocationStat::getDiffFromPrevDay).sum();
 
         CovidReponseModel response = new CovidReponseModel(totalCases, totalDeaths, totalRecovers,
-                totalDiffFromPrevDay, new Date());
-        return ResponseEntity.ok(response);
+                totalDiffFromPrevDay);
+        return ResponseEntity.ok().body(response);
     }
 
 }
