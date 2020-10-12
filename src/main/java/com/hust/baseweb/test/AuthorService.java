@@ -23,8 +23,10 @@ public class AuthorService {
             Matcher matcher = pattern.matcher(searchString + ",");
             while (matcher.find()) {
                 builder.with(matcher.group(1), matcher.group(2), matcher.group(3));
+                System.out.println(matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3));
             }
             BooleanExpression exp = builder.build();
+            System.out.println(exp);
             return authorRepo.findAll(exp, pageable);
         }
         return authorRepo.findAll(pageable);

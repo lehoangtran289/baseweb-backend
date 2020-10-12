@@ -21,6 +21,7 @@ public interface AuthorRepo extends JpaRepository<Author, Long>, QuerydslPredica
     Optional<Author> findById(Long authorId);
 
     // customized querydsl
+    // http://127.0.0.1:8080/api/findAuthors?search=authorName:or,authorId>2&page=1&size=1&sort=asc
     Page<Author> findAll(Predicate predicate, Pageable pageable);
 
     // http://127.0.0.1:8080/api/authors/search/nameStartsWith{?authorName}
