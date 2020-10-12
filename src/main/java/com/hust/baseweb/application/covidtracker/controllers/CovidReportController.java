@@ -12,12 +12,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Log4j2
@@ -27,12 +27,9 @@ public class CovidReportController {
     private CovidDataService service;
 
     @GetMapping("/covid/data-list")
-    public ResponseEntity<?> getCovidData(Pageable pageable) {
+    public ResponseEntity<?> getCovidData(Pageable pageable, @RequestParam(required = false) String search) {
         List<LocationStat> dataList = service.getDataList();
 
-        // convert datalist to pageable Page
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), dataList.size());
         for (Sort.Order order : pageable.getSort()) {
             if (order.getDirection().isDescending()) {
                 if (order.getProperty().equals("totalCases"))
@@ -51,7 +48,16 @@ public class CovidReportController {
                     dataList.sort(Comparator.comparing(LocationStat::getTotalRecovers));
             }
         }
+
+        if (search != null && !search.isEmpty())
+            dataList =
+                    dataList.stream().filter(item -> item.getCountry().equals(search) || item.getState().equals(search)).collect(Collectors.toList());
+
+        // convert datalist to pageable Page
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), dataList.size());
         Page<LocationStat> page = new PageImpl<>(dataList.subList(start, end), pageable, dataList.size());
+
         return ResponseEntity.ok().body(page);
     }
 
