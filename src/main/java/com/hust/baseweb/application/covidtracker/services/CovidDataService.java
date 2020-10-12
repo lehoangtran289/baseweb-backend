@@ -1,5 +1,6 @@
 package com.hust.baseweb.application.covidtracker.services;
 
+import com.hust.baseweb.application.covidtracker.models.CovidReponseModel;
 import com.hust.baseweb.application.covidtracker.models.LocationStat;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,6 +17,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,17 +35,13 @@ public class CovidDataService {
             "/time_series_covid19_recovered_global.csv";
 
     private OkHttpClient client = new OkHttpClient();
-    private List<LocationStat> dataList = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
-        CovidDataService service = new CovidDataService();
-        service.fetchData();
-    }
-
-    public List<LocationStat> getDataList() {
-        return dataList;
-    }
-
+    /**
+     * Construct a GET request
+     *
+     * @param url
+     * @return response body
+     */
     public String getRequest(String url) throws IOException {
         Request request = new Request.Builder().url(url).build();
         Response response = client.newCall(request).execute();
@@ -61,7 +59,10 @@ public class CovidDataService {
         writeToCSVFile("covidreports/totalCases.csv", getRequest(TOTALCASES_URL));
         writeToCSVFile("covidreports/totalDeaths.csv", getRequest(TOTALDEATHS_URL));
         writeToCSVFile("covidreports/totalRecovers.csv", getRequest(TOTALRECOVERS_URL));
+    }
 
+    public List<LocationStat> getDataListLatestDay() throws IOException {
+        List<LocationStat> dataList = new ArrayList<>();
         Reader casesReader = Files.newBufferedReader(Paths.get("covidreports/totalCases.csv"));
         Reader deathsReader = Files.newBufferedReader(Paths.get("covidreports/totalDeaths.csv"));
         Reader recoversReader = Files.newBufferedReader(Paths.get("covidreports/totalRecovers.csv"));
@@ -102,5 +103,44 @@ public class CovidDataService {
             dataList.add(locationStat);
             dataList.sort(Collections.reverseOrder());
         }
+        return dataList;
     }
+
+    public List<CovidReponseModel> getDataInMultipleDays(int days) throws IOException {
+        List<CovidReponseModel> res = new ArrayList<>(); //Arrays.asList(new CovidReponseModel[days])
+        for (int i = 0; i < days; i++) {
+            LocalDate date = LocalDate.now().minusDays(i);
+            res.add(new CovidReponseModel(0, 0, 0, 0, date));
+        }
+
+        Reader casesReader = Files.newBufferedReader(Paths.get("covidreports/totalCases.csv"));
+        Reader deathsReader = Files.newBufferedReader(Paths.get("covidreports/totalDeaths.csv"));
+        Reader recoversReader = Files.newBufferedReader(Paths.get("covidreports/totalRecovers.csv"));
+
+        CSVParser cases = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(casesReader);
+        List<CSVRecord> deaths = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(deathsReader).getRecords();
+        List<CSVRecord> recovers =
+                CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(recoversReader).getRecords();
+
+        for (CSVRecord record : cases)
+            for (int i = 0; i < days; i++)
+                res.get(i).setTotalCases(res.get(i).getTotalCases() + Integer.parseInt(record.get(record.size() - 1 - i)));
+
+        for (CSVRecord record : deaths)
+            for (int i = 0; i < days; i++)
+                res.get(i).setTotalDeaths(res.get(i).getTotalDeaths() + Integer.parseInt(record.get(record.size() - 1 - i)));
+
+        for (CSVRecord record : recovers)
+            for (int i = 0; i < days; i++)
+                res.get(i).setTotalRecovers(res.get(i).getTotalRecovers() + Integer.parseInt(record.get(record.size() - 1 - i)));
+
+        Collections.reverse(res);
+        return res;
+    }
+
+//    public static void main(String[] args) throws IOException { //testing purposes
+//        CovidDataService service = new CovidDataService();
+//        System.out.println(service.getDataInMultipleDays(7));
+//    }
+
 }
