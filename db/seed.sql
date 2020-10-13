@@ -1,0 +1,307 @@
+INSERT INTO public.status_type
+(status_type_id, description)
+VALUES('USER_STATUS', 'users status');
+
+insert into status_item(status_id, status_type_id, status_code, description)
+values ('USER_REGISTERED', 'USER_STATUS', 'REGISTERED','Đã đăng ký'),
+('USER_APPROVED', 'USER_STATUS', 'APPROVED','Đã phê duyệt');
+
+INSERT INTO public.status_type VALUES ('ORDER_STATUS', NULL, 'Order Status', NULL, '2020-02-01 21:35:10.048');
+INSERT INTO public.status_type VALUES ('DELIVERY_STATUS', NULL, 'Delivery status', NULL, '2020-03-08 08:43:46.697');
+INSERT INTO public.status_type VALUES ('PARTY_STATUS', NULL, 'Party status', '2020-05-09 22:27:44.930314', '2020-05-09 22:27:44.930314');
+INSERT INTO public.status_type VALUES ('MARRY_STATUS', NULL, 'Marry status', '2020-05-09 22:27:44.934315', '2020-05-09 22:27:44.934315');
+INSERT INTO public.status_type VALUES ('SERVICE_STATUS', NULL, 'Service status', '2020-05-09 22:27:44.936315', '2020-05-09 22:27:44.936315');
+INSERT INTO public.status_type VALUES ('INVOICE_STATUS', NULL, 'invoice Status', '2020-05-09 22:27:44.938315', '2020-05-09 22:27:44.938315');
+INSERT INTO public.status_type VALUES ('USER_STATUS', NULL, 'users status', NULL, '2020-09-03 11:47:10.043468');
+
+INSERT INTO public.status VALUES ('SINGLE', 'MARRY_STATUS', 'SINGLE', '0', 'Độc thân', '2020-05-09 22:27:44.944315', '2020-05-09 22:27:44.944315');
+INSERT INTO public.status VALUES ('MARRIED', 'MARRY_STATUS', 'MARRIED', '0', 'Đã kết hôn', '2020-05-09 22:27:44.950316', '2020-05-09 22:27:44.950316');
+INSERT INTO public.status VALUES ('DIVORCED', 'MARRY_STATUS', 'DIVORCED', '0', 'Đã ly dị', '2020-05-09 22:27:44.953316', '2020-05-09 22:27:44.953316');
+INSERT INTO public.status VALUES ('PARTY_ENABLED', 'PARTY_STATUS', 'ENABLED', '0', 'Đã kích hoạt', '2020-05-09 22:27:44.956316', '2020-05-09 22:27:44.956316');
+INSERT INTO public.status VALUES ('PARTY_DISABLED', 'PARTY_STATUS', 'DISABLED', '0', 'Đã bị vô hiệu hóa', '2020-05-09 22:27:44.959316', '2020-05-09 22:27:44.959316');
+
+INSERT INTO public.status_item VALUES ('ORDER_CREATED', 'ORDER_STATUS', 'CREATED', 'tạo mới', NULL, '2020-05-09 22:27:04.446999');
+INSERT INTO public.status_item VALUES ('ORDER_CANCELLED', 'ORDER_STATUS', 'CANCELLED', 'đã hủy', NULL, '2020-05-09 22:27:04.446999');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_CREATED', 'DELIVERY_STATUS', NULL, 'Tạo mới', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_CREATED', 'DELIVERY_STATUS', NULL, 'Tạo mới', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_SCHEDULED_TRIP', 'DELIVERY_STATUS', NULL, 'Đang xếp chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_DETAIL_SCHEDULED_TRIP', 'DELIVERY_STATUS', NULL, 'Đang xếp chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_APPROVED_TRIP', 'DELIVERY_STATUS', NULL, 'Đã phê duyệt chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_DETAIL_APPROVED_TRIP', 'DELIVERY_STATUS', NULL, 'Đã phê duyệt chi tiết chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_DETAIL_ON_TRIP', 'DELIVERY_STATUS', NULL, 'Đang thực hiện chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_EXECUTED', 'DELIVERY_STATUS', NULL, 'Đang thực hiện chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_DETAIL_COMPLETED', 'DELIVERY_STATUS', NULL, 'Hoàn thành giao chi tiết chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_COMPLETED', 'DELIVERY_STATUS', NULL, 'Hoàn thành giao đơn vận chuyển', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('DELIVERY_TRIP_COMPLETED', 'DELIVERY_STATUS', NULL, 'Hoàn thành giao chuyến', NULL, '2020-05-09 22:27:04.454999');
+INSERT INTO public.status_item VALUES ('SHIPMENT_TRIP_CREATED', 'DELIVERY_STATUS', NULL, 'Tạo mới', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_TRIP_CANCELLED', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_TRIP_COMPLETED', 'DELIVERY_STATUS', NULL, 'Hoàn thành', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_ON_TRIP', 'DELIVERY_STATUS', NULL, 'Hàng xếp chuyến', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_DELIVERED', 'DELIVERY_STATUS', NULL, 'Đã giao xong', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_NOT_DELIVERED', 'DELIVERY_STATUS', NULL, 'Hàng không được giao', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SHIPMENT_ITEM_CANCELLED', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('CREATED', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('SCHEDULED_TRIP', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('APPROVED_TRIP', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('COMPLETED', 'DELIVERY_STATUS', NULL, 'Hủy', NULL, '2020-03-08 08:47:16.775');
+INSERT INTO public.status_item VALUES ('INVOICE_CREATED', 'INVOICE_STATUS', NULL, 'Tạo mới hóa đơn', NULL, '2020-08-15 20:29:50.870348');
+INSERT INTO public.status_item VALUES ('INVOICE_APPROVED', 'INVOICE_STATUS', NULL, 'Đã phê duyệt hóa đơn', NULL, '2020-08-15 20:29:50.870348');
+INSERT INTO public.status_item VALUES ('INVOICE_CANCELED', 'INVOICE_STATUS', NULL, 'Hóa đơn đã bị hủy', NULL, '2020-08-15 20:29:50.870348');
+INSERT INTO public.status_item VALUES ('INVOICE_COMPLETED', 'INVOICE_STATUS', NULL, 'Hóa đơn hoàn thành', NULL, '2020-08-15 20:29:50.870348');
+INSERT INTO public.status_item VALUES ('USER_REGISTERED', 'USER_STATUS', 'REGISTERED', 'Đã đăng ký', NULL, '2020-09-03 11:47:11.315541');
+INSERT INTO public.status_item VALUES ('USER_APPROVED', 'USER_STATUS', 'APPROVED', 'Đã phê duyệt', NULL, '2020-09-03 11:47:11.315541');
+
+INSERT INTO public.party_type VALUES ('AUTOMATED_AGENT', NULL, false, 'Automated Agent', '2020-05-09 22:27:44.902313', '2020-05-09 22:27:44.902313');
+INSERT INTO public.party_type VALUES ('PERSON', NULL, true, 'Person', '2020-05-09 22:27:44.905313', '2020-05-09 22:27:44.905313');
+INSERT INTO public.party_type VALUES ('PARTY_GROUP', NULL, true, 'Party Group', '2020-05-09 22:27:44.908313', '2020-05-09 22:27:44.908313');
+INSERT INTO public.party_type VALUES ('BANK', 'PARTY_GROUP', true, 'Bank', '2020-05-09 22:27:44.909313', '2020-05-09 22:27:44.909313');
+INSERT INTO public.party_type VALUES ('LEGAL_ORGANIZATION', 'PARTY_GROUP', false, 'Legal Organization', '2017-01-03 10:11:27.885', '2017-01-03 10:11:27.608');
+INSERT INTO public.party_type VALUES ('CORPORATION', 'LEGAL_ORGANIZATION', false, 'Corporation', '2020-05-09 22:27:44.918314', '2020-05-09 22:27:44.918314');
+INSERT INTO public.party_type VALUES ('CUSTOMER_GROUP', 'PARTY_GROUP', false, 'Customer Group', '2020-05-09 22:27:44.920314', '2020-05-09 22:27:44.920314');
+INSERT INTO public.party_type VALUES ('PARTY_DISTRIBUTOR', NULL, false, 'Distributor', '2020-05-09 22:27:44.925314', '2020-05-09 22:27:44.925314');
+INSERT INTO public.party_type VALUES ('PARTY_RETAIL_OUTLET', NULL, false, 'Distributor', '2020-05-09 22:27:44.927314', '2020-05-09 22:27:44.927314');
+INSERT INTO public.party_type VALUES ('COMPANY', NULL, NULL, 'Company', NULL, '2020-05-09 22:27:44.928314');
+INSERT INTO public.party_type VALUES ('PARTY_SUPPLIER', NULL, false, 'Supplier', '2020-08-28 21:10:26.67085', '2020-08-28 21:10:26.67085');
+
+INSERT INTO public.party VALUES ('bd6322f2-2121-11ea-81a8-979e2f76b5a4', 'PERSON', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-05-09 22:27:47.48146', '2020-05-09 22:27:47.48146', 'admin');
+INSERT INTO public.party VALUES ('3ad64675-24b9-42ca-823a-9f2e70af960c', 'PERSON', NULL, '', 'PARTY_ENABLED', '2020-05-10 22:52:01.372', 'admin', '2020-05-10 22:52:01.372', 'admin', false, NULL, '2020-05-10 22:52:01.335224', '1');
+INSERT INTO public.party VALUES ('e9e1781e-b939-429f-b23b-cb9a67ab49ea', 'PERSON', NULL, '', 'PARTY_DISABLED', '2020-05-11 09:07:50.866', 'hoangtl', '2020-05-11 09:08:37.931', 'hoangtl', false, NULL, '2020-05-11 09:07:50.764087', 'temp');
+INSERT INTO public.party VALUES ('3ab6176c-e6a1-4d69-9980-aee597a62ac6', 'PERSON', NULL, '', 'PARTY_ENABLED', '2020-05-10 21:24:20.195', 'admin', '2020-05-11 09:19:44.998', 'a', false, NULL, '2020-05-10 21:24:20.151301', 'admin');
+INSERT INTO public.party VALUES ('3a637e5f-ea23-4217-b92b-aaf7e06b4656', 'PERSON', NULL, '', 'PARTY_ENABLED', '2020-05-11 10:31:19.541', 'admin', '2020-05-11 10:31:19.541', 'admin', false, NULL, '2020-05-11 10:31:19.536573', 'admin');
+INSERT INTO public.party VALUES ('feca4e1f-d77f-4c59-8571-1efeae252015', 'PERSON', NULL, '', 'PARTY_ENABLED', '2020-05-11 11:17:51.25', 'hoangtl1', '2020-05-11 11:17:51.25', 'hoangtl1', false, NULL, '2020-05-11 11:17:51.208247', 'admin');
+INSERT INTO public.party VALUES ('9dd7ce54-94b6-4bfa-b765-66db5691679e', 'PERSON', NULL, '', 'PARTY_DISABLED', '2020-05-10 23:06:54.394', 'hoangtl', '2020-05-11 11:18:25.13', 'hoangtl2', false, NULL, '2020-05-10 23:06:54.308299', '222');
+INSERT INTO public.party VALUES ('7735cbb1-ee6d-412c-85a0-ca787f93cc79', 'PERSON', NULL, '', 'PARTY_DISABLED', '2020-05-11 16:10:39.303', 'admin', '2020-05-11 16:11:04.675', 'hoangtl3', false, NULL, '2020-05-11 16:10:38.943745', 'admin');
+INSERT INTO public.party VALUES ('6d28fa9b-5528-466f-802f-21815bceb8e8', 'PERSON', NULL, '', 'PARTY_ENABLED', '2020-05-11 20:40:18.579', 'hoangtl', '2020-05-11 20:40:18.579', 'hoangtl', false, NULL, '2020-05-11 20:40:18.575937', 'hoangtl4');
+INSERT INTO public.party VALUES ('7e8b6ed2-265c-11ea-aca9-f77013972e0d', 'PERSON', NULL, NULL, 'PARTY_ENABLED', '2020-08-15 20:27:42.719018', 'admin', NULL, NULL, false, NULL, '2020-08-15 20:27:42.719018', NULL);
+INSERT INTO public.party VALUES ('9a8e40d2-265c-11ea-acaa-eb83ca2329f6', 'PERSON', NULL, NULL, 'PARTY_ENABLED', '2020-08-15 20:28:41.118359', 'admin', NULL, NULL, false, NULL, '2020-08-15 20:28:41.118359', NULL);
+INSERT INTO public.party VALUES ('8161d37e-4026-11ea-9be3-54bf64436441', 'PARTY_DISTRIBUTOR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, '2020-01-26 17:27:51.182', '2020-01-26 17:27:51.182', NULL);
+INSERT INTO public.party VALUES ('875704ac-4026-11ea-9be4-54bf64436441', 'PARTY_DISTRIBUTOR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, '2020-01-26 17:28:01.179', '2020-01-26 17:28:01.179', NULL);
+INSERT INTO public.party VALUES ('a2fc6dfc-9209-11ea-8788-8bce451a0940', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.83743', '2020-05-09 22:27:47.496461', NULL);
+INSERT INTO public.party VALUES ('a535012e-9209-11ea-8789-474edece084f', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.84143', '2020-05-09 22:27:51.229675', NULL);
+INSERT INTO public.party VALUES ('a9c60c1a-9209-11ea-878a-6f96690f8ac3', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.84343', '2020-05-09 22:27:58.891113', NULL);
+INSERT INTO public.party VALUES ('5ae20c48-4d6c-11ea-967e-54bf64436441', 'PARTY_RETAIL_OUTLET', NULL, NULL, 'PARTY_ENABLED', NULL, 'admin', NULL, NULL, false, '2020-09-01 11:29:35.84443', '2020-02-12 14:50:36.479', NULL);
+INSERT INTO public.party VALUES ('d8d8fb18-4d6f-11ea-9681-54bf64436441', 'PARTY_RETAIL_OUTLET', NULL, NULL, 'PARTY_ENABLED', NULL, 'admin', NULL, NULL, false, '2020-09-01 11:29:35.84643', '2020-02-12 15:15:36.302', NULL);
+INSERT INTO public.party VALUES ('5b63a1ea-4d71-11ea-9684-54bf64436441', 'PARTY_RETAIL_OUTLET', NULL, NULL, 'PARTY_ENABLED', NULL, 'admin', NULL, NULL, false, '2020-09-01 11:29:35.84943', '2020-02-12 15:26:24.812', NULL);
+INSERT INTO public.party VALUES ('68b9cef2-defb-11ea-b306-8795e5f6fd94', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.85143', '2020-08-15 20:29:56.333661', NULL);
+INSERT INTO public.party VALUES ('38e2f0c2-e938-11ea-937b-97d72a8a4aba', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.85343', '2020-08-28 21:10:26.990869', NULL);
+INSERT INTO public.party VALUES ('67199a90-e938-11ea-8239-6ba8a6dd76a9', 'COMPANY', NULL, NULL, 'PARTY_ENABLED', NULL, NULL, NULL, NULL, false, '2020-09-01 11:29:35.85443', '2020-08-28 21:11:44.535304', NULL);
+
+INSERT INTO public.person VALUES ('bd6322f2-2121-11ea-81a8-979e2f76b5a4', 'admin', ',', ',', 'M', '2020-05-09', NULL, '2020-05-09 22:27:47.485461');
+INSERT INTO public.person VALUES ('3ab6176c-e6a1-4d69-9980-aee597a62ac6', 'Tran', 'Le', 'Hoang', 'M', '2020-05-10', NULL, '2020-05-10 21:24:20.151301');
+INSERT INTO public.person VALUES ('9dd7ce54-94b6-4bfa-b765-66db5691679e', '21', '22', '23', 'M', '2020-05-10', NULL, '2020-05-10 23:06:54.308299');
+INSERT INTO public.person VALUES ('e9e1781e-b939-429f-b23b-cb9a67ab49ea', 'a', 'b', 'c', 'M', '2020-05-11', NULL, '2020-05-11 09:07:50.764087');
+INSERT INTO public.person VALUES ('3ad64675-24b9-42ca-823a-9f2e70af960c', '11', '1', '2345', 'M', '2020-05-10', NULL, '2020-05-10 22:52:01.335224');
+INSERT INTO public.person VALUES ('3a637e5f-ea23-4217-b92b-aaf7e06b4656', 'tran', 'le ', 'Hoang', 'M', '2020-05-11', NULL, '2020-05-11 10:31:19.536573');
+INSERT INTO public.person VALUES ('feca4e1f-d77f-4c59-8571-1efeae252015', 'Tran', 'le', 'Hoang', 'M', '2020-05-03', NULL, '2020-05-11 11:17:51.208247');
+INSERT INTO public.person VALUES ('6d28fa9b-5528-466f-802f-21815bceb8e8', 'Tran', 'Le', 'Hoang', 'M', '2020-05-11', NULL, '2020-05-11 20:40:18.575937');
+INSERT INTO public.person VALUES ('7e8b6ed2-265c-11ea-aca9-f77013972e0d', 'Nguyễn', 'Văn', 'Sêu', 'M', '2020-08-15', NULL, '2020-08-15 20:27:42.730019');
+INSERT INTO public.person VALUES ('9a8e40d2-265c-11ea-acaa-eb83ca2329f6', 'Trần', 'Thị', 'Toán', 'M', '2020-08-15', NULL, '2020-08-15 20:28:41.121359');
+
+INSERT INTO public.user_login VALUES ('hoangtl', '$2a$10$DnFnON27fzbHXrMKXOSaH.mQwU3zcvdXVgKc1KWcLyUycBOu3xNBC', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-10 21:24:20.151301', 0, '3ab6176c-e6a1-4d69-9980-aee597a62ac6', 'hoangtl@gmail.com');
+INSERT INTO public.user_login VALUES ('test', '$2a$10$SKNMpjtfDDOle06TdKml0ur4jwK1JVAKabXtYzjHWb3dOzbYxbPxG', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-10 22:52:01.335224', 0, '3ad64675-24b9-42ca-823a-9f2e70af960c', '123@gmail.com');
+INSERT INTO public.user_login VALUES ('222', '$2a$10$9UQk07xDnY0Pm51rbS3l7uVq38vf7m2U4aYvJ63Nn0rWs152CwG6a', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-10 23:06:54.308299', 0, '9dd7ce54-94b6-4bfa-b765-66db5691679e', '222@gmail.com');
+INSERT INTO public.user_login VALUES ('a', '$2a$10$mlILzTUg.Pa18/skslxOd.4YrEdyewaJJp8t1b.dbzvFGRKQ24wra', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-11 09:07:50.764087', 0, 'e9e1781e-b939-429f-b23b-cb9a67ab49ea', 'a@gmail.com');
+INSERT INTO public.user_login VALUES ('hoangtl1', '$2a$10$TE9vjKt7Nt5L5W2W2V9GiODAFBfH9YEXXjgf.OKGSpHb.yD5VLNr6', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-11 10:31:19.536573', 0, '3a637e5f-ea23-4217-b92b-aaf7e06b4656', 'hoangtl123@gmail.com');
+INSERT INTO public.user_login VALUES ('hoangtl2', '$2a$10$t3vK/JjzTzcNyXAwDz9WBe6QUsHP1kezTWGU.U/cMCFK389q7VT4q', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-11 11:17:51.208247', 0, 'feca4e1f-d77f-4c59-8571-1efeae252015', 'hoangtl21@gmail.com');
+INSERT INTO public.user_login VALUES ('hoangtl3', '$2a$10$HG.ABHn0GYhrU2bugsJvBeXSsK56ycZezx2opkYfwkCzDwGtwGM.q', NULL, NULL, NULL, false, false, false, false, NULL, NULL, NULL, '2020-05-11 16:10:38.943745', 0, '7735cbb1-ee6d-412c-85a0-ca787f93cc79', 'lehoang@gmail.com');
+INSERT INTO public.user_login VALUES ('hoangtl4', '$2a$10$aqEQpTtEpxiCsLvHGbgJ/OGQ.Ab/qaB9W.sUpGqncgw16VhG2ppmC', NULL, NULL, NULL, false, true, false, false, NULL, NULL, NULL, '2020-05-11 20:40:18.575937', 0, '6d28fa9b-5528-466f-802f-21815bceb8e8', 'hoangtl4@gmail.com');
+INSERT INTO public.user_login VALUES ('nguyenvanseu', '$2a$04$cqFXgdkB.8u2HwT3QUTVZuePtHdzi.rWFCjdgNbVB7l6vn/yAU7F6', NULL, NULL, NULL, false, true, false, false, NULL, NULL, '2020-08-15 20:28:41.098357', '2020-08-15 20:28:41.098357', 0, '7e8b6ed2-265c-11ea-aca9-f77013972e0d', NULL);
+INSERT INTO public.user_login VALUES ('tranthitoan', '$2a$04$cqFXgdkB.8u2HwT3QUTVZuePtHdzi.rWFCjdgNbVB7l6vn/yAU7F6', NULL, NULL, NULL, false, true, false, false, NULL, NULL, '2020-08-15 20:28:41.124359', '2020-08-15 20:28:41.124359', 0, '9a8e40d2-265c-11ea-acaa-eb83ca2329f6', NULL);
+INSERT INTO public.user_login VALUES ('admin', '$2a$10$Y4FXX6TalapgQ3rJoe.QHe9.RutM4l81pAm2S1XzDuUR83qLvDxyO', NULL, NULL, NULL, false, true, false, false, NULL, NULL, '2020-08-28 21:11:44.522303', '2020-05-09 22:27:47.489461', 0, 'bd6322f2-2121-11ea-81a8-979e2f76b5a4', 'admin@gmail.com');
+
+INSERT INTO public.security_group VALUES ('ROLE_SALE_MANAGER', 'Sale manager account owner access security group', '2017-01-03 10:12:23.879', '2017-01-03 10:12:23.878');
+INSERT INTO public.security_group VALUES ('ROLE_ACCOUNTANT', 'Accountant account owner access security group', '2017-01-03 10:12:42.531', '2017-01-03 10:12:42.507');
+INSERT INTO public.security_group VALUES ('ROLE_FULL_ADMIN', 'Full Admin group, has all general functional permissions.', '2017-01-03 10:12:23.994', '2017-01-03 10:12:23.993');
+INSERT INTO public.security_group VALUES ('ROLE_TMS_MANAGER', 'Management of Transportation System', NULL, '2020-03-01 18:39:19.097');
+INSERT INTO public.security_group VALUES ('ROLE_SALES_ROUTE_MANAGER', 'Management of Sales Route', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group VALUES ('ROLE_TMS_CONTAINER_ADMIN', 'Quản trị vận chuyển container', NULL, '2020-04-10 23:35:36.604');
+INSERT INTO public.security_group VALUES ('ROLE_HR_ADMIN', 'human resources group', NULL, '2020-05-09 22:28:23.1385');
+INSERT INTO public.security_group VALUES ('ROLE_DISTRIBUTOR', 'distributor group', NULL, '2020-05-09 22:28:50.580069');
+INSERT INTO public.security_group VALUES ('ROLE_CUSTOMER_ADMIN', 'customer admin group', NULL, '2020-05-09 22:28:56.556411');
+INSERT INTO public.security_group VALUES ('ROLE_PRODUCT_ADMIN', 'product management group', NULL, '2020-05-09 22:30:07.291457');
+INSERT INTO public.security_group VALUES ('ROLE_DRIVER', 'driver group', NULL, '2020-05-09 22:31:11.407124');
+INSERT INTO public.security_group VALUES ('ROLE_WAREHOUSE_ADMIN', 'warehouse group', NULL, '2020-05-09 22:31:16.443412');
+INSERT INTO public.security_group VALUES ('ROLE_SALESMAN', 'salesman group', NULL, '2020-05-09 22:31:34.05642');
+INSERT INTO public.security_group VALUES ('ROLE_SALESSUP', 'sales supervisor group', NULL, '2020-05-09 22:31:34.06542');
+INSERT INTO public.security_group VALUES ('ROLE_SALES_ADMIN', 'sales admin', NULL, '2020-05-09 22:31:34.06642');
+INSERT INTO public.security_group VALUES ('ROLE_RETAIL_OUTLET', 'retail outlet group', NULL, '2020-05-09 22:31:42.136882');
+
+INSERT INTO public.security_permission VALUES ('USER_CREATE', 'Create user permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('USER_VIEW', 'View user permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('ORDER_CREATE', 'Create order permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('ORDER_VIEW', 'View order permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('INVOICE_CREATE', 'Create order permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('INVOICE_VIEW', 'View order permission', '2019-12-26 08:00:31.803', '2019-12-26 08:00:31.803');
+INSERT INTO public.security_permission VALUES ('DELIVERY_PLAN_CREATE', 'Creation of delivery plan and trips', NULL, '2020-03-01 18:39:22.008');
+INSERT INTO public.security_permission VALUES ('SALES_ROUTE_PLAN_CREATE', 'Creation of Sales Route', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('GEO_ADDRESS_ADMIN', 'Creation of Sales Route', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('SALES_ADMIN_VIEW_REPORT', 'Administrator of sales', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('FACILITY_ADMIN_VIEW_REPORT', 'Administrator of facility', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('TMS_ADMIN_VIEW_REPORT', 'Administrator of facility', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('TMS_CONTAINER_ADMIN', 'Administrator of container transportation', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('SALES_ADMIN', 'Administrator of sales', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_permission VALUES ('PERM_DEPARTMENT_CREATE', 'Create department', NULL, '2020-05-09 22:28:24.53558');
+INSERT INTO public.security_permission VALUES ('PERM_DEPARTMENT_VIEW', 'Create department', NULL, '2020-05-09 22:28:24.53858');
+INSERT INTO public.security_permission VALUES ('CUSTOMER_CREATE', 'Create customers', NULL, '2020-05-09 22:28:56.559411');
+INSERT INTO public.security_permission VALUES ('CUSTOMER_VIEW', 'View customers', NULL, '2020-05-09 22:28:56.560412');
+INSERT INTO public.security_permission VALUES ('PRODUCT_CREATE', 'Create products', NULL, '2020-05-09 22:30:07.296457');
+INSERT INTO public.security_permission VALUES ('PRODUCT_VIEW', 'View products', NULL, '2020-05-09 22:30:07.298457');
+INSERT INTO public.security_permission VALUES ('PRODUCT_PRICE_CREATE', 'Create product price', NULL, '2020-05-09 22:30:07.299458');
+INSERT INTO public.security_permission VALUES ('PRODUCT_PRICE_VIEW', 'View product price', NULL, '2020-05-09 22:30:07.300458');
+INSERT INTO public.security_permission VALUES ('WAREHOUSE_CREATE', 'Create warehouse', NULL, '2020-05-09 22:31:16.448413');
+INSERT INTO public.security_permission VALUES ('WAREHOUSE_VIEW', 'View warehouse', NULL, '2020-05-09 22:31:16.450413');
+INSERT INTO public.security_permission VALUES ('WAREHOUSE_IMPORT', 'Import to warehouse management', NULL, '2020-05-09 22:31:16.451413');
+INSERT INTO public.security_permission VALUES ('WAREHOUSE_EXPORT', 'Export from warehouse management', NULL, '2020-05-09 22:31:16.453413');
+INSERT INTO public.security_permission VALUES ('WAREHOUSE_INVENTORY_ITEM', 'Inventory item', NULL, '2020-05-09 22:31:16.454413');
+INSERT INTO public.security_permission VALUES ('PERM_RETAILOUTLET_CREATE', 'Create retail outlets', NULL, '2020-05-09 22:31:34.06842');
+INSERT INTO public.security_permission VALUES ('PERM_RETAILOUTLET_VIEW', 'View retail outlets', NULL, '2020-05-09 22:31:34.069421');
+INSERT INTO public.security_permission VALUES ('PERM_RETAILOUTLET_VIEW_ALL', 'View retail outlets', NULL, '2020-05-09 22:31:34.070421');
+INSERT INTO public.security_permission VALUES ('PERM_DISTRIBUTOR_CREATE', 'Create retail outlets', NULL, '2020-05-09 22:31:34.071421');
+INSERT INTO public.security_permission VALUES ('PERM_DISTRIBUTOR_VIEW', 'View retail outlets', NULL, '2020-05-09 22:31:34.071421');
+INSERT INTO public.security_permission VALUES ('PERM_DISTRIBUTOR_VIEW_ALL', 'View retail outlets', NULL, '2020-05-09 22:31:34.072421');
+
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'ORDER_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'ORDER_CREATE', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'USER_CREATE', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'USER_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'INVOICE_CREATE', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'INVOICE_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALE_MANAGER', 'ORDER_CREATE', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALE_MANAGER', 'ORDER_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_ACCOUNTANT', 'ORDER_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_ACCOUNTANT', 'INVOICE_CREATE', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_ACCOUNTANT', 'INVOICE_VIEW', '2019-12-26 08:00:35.749', '2019-12-26 08:00:35.749');
+INSERT INTO public.security_group_permission VALUES ('ROLE_TMS_MANAGER', 'DELIVERY_PLAN_CREATE', NULL, '2020-03-01 18:39:24.741');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'DELIVERY_PLAN_CREATE', NULL, '2020-03-01 18:49:58.969');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ROUTE_MANAGER', 'SALES_ROUTE_PLAN_CREATE', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'SALES_ROUTE_PLAN_CREATE', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'GEO_ADDRESS_ADMIN', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'SALES_ADMIN_VIEW_REPORT', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'FACILITY_ADMIN_VIEW_REPORT', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'TMS_ADMIN_VIEW_REPORT', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'TMS_CONTAINER_ADMIN', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_TMS_CONTAINER_ADMIN', 'TMS_CONTAINER_ADMIN', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.security_group_permission VALUES ('ROLE_PRODUCT_ADMIN', 'PRODUCT_CREATE', NULL, '2020-05-09 22:30:07.33846');
+INSERT INTO public.security_group_permission VALUES ('ROLE_PRODUCT_ADMIN', 'PRODUCT_VIEW', NULL, '2020-05-09 22:30:07.34046');
+INSERT INTO public.security_group_permission VALUES ('ROLE_PRODUCT_ADMIN', 'PRODUCT_PRICE_CREATE', NULL, '2020-05-09 22:30:07.34246');
+INSERT INTO public.security_group_permission VALUES ('ROLE_PRODUCT_ADMIN', 'PRODUCT_PRICE_VIEW', NULL, '2020-05-09 22:30:07.34346');
+INSERT INTO public.security_group_permission VALUES ('ROLE_WAREHOUSE_ADMIN', 'WAREHOUSE_CREATE', NULL, '2020-05-09 22:31:16.477414');
+INSERT INTO public.security_group_permission VALUES ('ROLE_WAREHOUSE_ADMIN', 'WAREHOUSE_VIEW', NULL, '2020-05-09 22:31:16.479414');
+INSERT INTO public.security_group_permission VALUES ('ROLE_WAREHOUSE_ADMIN', 'WAREHOUSE_IMPORT', NULL, '2020-05-09 22:31:16.481415');
+INSERT INTO public.security_group_permission VALUES ('ROLE_WAREHOUSE_ADMIN', 'WAREHOUSE_EXPORT', NULL, '2020-05-09 22:31:16.484415');
+INSERT INTO public.security_group_permission VALUES ('ROLE_WAREHOUSE_ADMIN', 'WAREHOUSE_INVENTORY_ITEM', NULL, '2020-05-09 22:31:16.486415');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALESMAN', 'PERM_RETAILOUTLET_CREATE', NULL, '2020-05-09 22:31:34.086421');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALESMAN', 'PERM_RETAILOUTLET_VIEW', NULL, '2020-05-09 22:31:34.088422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALESSUP', 'PERM_RETAILOUTLET_CREATE', NULL, '2020-05-09 22:31:34.089422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALESSUP', 'PERM_RETAILOUTLET_VIEW', NULL, '2020-05-09 22:31:34.090422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_RETAILOUTLET_CREATE', NULL, '2020-05-09 22:31:34.092422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_RETAILOUTLET_VIEW', NULL, '2020-05-09 22:31:34.093422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_RETAILOUTLET_VIEW_ALL', NULL, '2020-05-09 22:31:34.094422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_DISTRIBUTOR_CREATE', NULL, '2020-05-09 22:31:34.095422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_DISTRIBUTOR_VIEW', NULL, '2020-05-09 22:31:34.096422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_SALES_ADMIN', 'PERM_DISTRIBUTOR_VIEW_ALL', NULL, '2020-05-09 22:31:34.097422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_RETAILOUTLET_CREATE', NULL, '2020-05-09 22:31:34.098422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_RETAILOUTLET_VIEW', NULL, '2020-05-09 22:31:34.100422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_RETAILOUTLET_VIEW_ALL', NULL, '2020-05-09 22:31:34.101422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_DISTRIBUTOR_CREATE', NULL, '2020-05-09 22:31:34.102422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_DISTRIBUTOR_VIEW', NULL, '2020-05-09 22:31:34.103422');
+INSERT INTO public.security_group_permission VALUES ('ROLE_FULL_ADMIN', 'PERM_DISTRIBUTOR_VIEW_ALL', NULL, '2020-05-09 22:31:34.104423');
+INSERT INTO public.security_group_permission VALUES ('ROLE_HR_ADMIN', 'USER_CREATE', NULL, '2020-05-09 22:28:24.564581');
+INSERT INTO public.security_group_permission VALUES ('ROLE_HR_ADMIN', 'USER_VIEW', NULL, '2020-05-09 22:28:24.566582');
+INSERT INTO public.security_group_permission VALUES ('ROLE_HR_ADMIN', 'PERM_DEPARTMENT_CREATE', NULL, '2020-05-09 22:28:24.567582');
+INSERT INTO public.security_group_permission VALUES ('ROLE_HR_ADMIN', 'PERM_DEPARTMENT_VIEW', NULL, '2020-05-09 22:28:24.569582');
+INSERT INTO public.security_group_permission VALUES ('ROLE_CUSTOMER_ADMIN', 'CUSTOMER_CREATE', NULL, '2020-05-09 22:28:56.578413');
+INSERT INTO public.security_group_permission VALUES ('ROLE_CUSTOMER_ADMIN', 'CUSTOMER_VIEW', NULL, '2020-05-09 22:28:56.581413');
+
+INSERT INTO public.user_login_security_group VALUES ('admin', 'ROLE_FULL_ADMIN', '2020-05-09 22:27:47.492461', '2020-05-09 22:27:47.492461');
+INSERT INTO public.user_login_security_group VALUES ('admin', 'ROLE_HR_ADMIN', '2020-05-09 22:28:24.570582', '2020-05-09 22:28:24.570582');
+INSERT INTO public.user_login_security_group VALUES ('admin', 'ROLE_CUSTOMER_ADMIN', '2020-05-09 22:28:56.583413', '2020-05-09 22:28:56.583413');
+INSERT INTO public.user_login_security_group VALUES ('admin', 'ROLE_PRODUCT_ADMIN', '2020-05-09 22:30:07.34546', '2020-05-09 22:30:07.34546');
+INSERT INTO public.user_login_security_group VALUES ('admin', 'ROLE_WAREHOUSE_ADMIN', '2020-05-09 22:31:16.487415', '2020-05-09 22:31:16.487415');
+INSERT INTO public.user_login_security_group VALUES ('222', 'ROLE_FULL_ADMIN', NULL, '2020-05-10 23:06:54.308299');
+INSERT INTO public.user_login_security_group VALUES ('a', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 09:07:50.764087');
+INSERT INTO public.user_login_security_group VALUES ('hoangtl', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 09:19:45.01694');
+INSERT INTO public.user_login_security_group VALUES ('test', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 09:23:06.621471');
+INSERT INTO public.user_login_security_group VALUES ('hoangtl1', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 11:14:16.433963');
+INSERT INTO public.user_login_security_group VALUES ('hoangtl2', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 20:37:29.351258');
+INSERT INTO public.user_login_security_group VALUES ('hoangtl4', 'ROLE_FULL_ADMIN', NULL, '2020-05-11 20:40:18.575937');
+INSERT INTO public.user_login_security_group VALUES ('nguyenvanseu', 'ROLE_SALE_MANAGER', '2020-08-15 20:28:41.109358', '2020-08-15 20:28:41.109358');
+INSERT INTO public.user_login_security_group VALUES ('tranthitoan', 'ROLE_ACCOUNTANT', '2020-08-15 20:28:41.127359', '2020-08-15 20:28:41.127359');
+
+INSERT INTO public.application_type VALUES ('MENU', 'Menu application type', '2020-05-09 22:27:45.03032', '2020-05-09 22:27:45.03032');
+INSERT INTO public.application_type VALUES ('SCREEN', 'Screen application type', '2020-05-09 22:27:45.03132', '2020-05-09 22:27:45.03132');
+INSERT INTO public.application_type VALUES ('MODULE', 'Module application type', '2020-05-09 22:27:45.03332', '2020-05-09 22:27:45.03332');
+INSERT INTO public.application_type VALUES ('SERVICE', 'Service application type', '2020-05-09 22:27:45.03432', '2020-05-09 22:27:45.03432');
+INSERT INTO public.application_type VALUES ('ENTITY', 'Entity application type', '2020-05-09 22:27:45.035321', '2020-05-09 22:27:45.035321');
+
+INSERT INTO public.application VALUES ('MENU_USER', 'MENU', NULL, NULL, 'Menu user management', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_USER_CREATE', 'MENU', 'MENU_USER', 'USER_CREATE', 'Menu user create', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_USER_LIST', 'MENU', 'MENU_USER', 'USER_VIEW', 'Menu user list', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_ORDER', 'MENU', NULL, NULL, 'Menu order management', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_ORDER_LIST', 'MENU', 'MENU_ORDER', 'ORDER_VIEW', 'Menu order list', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_ORDER_CREATE', 'MENU', 'MENU_ORDER', 'ORDER_CREATE', 'Menu order create', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_INVOICE', 'MENU', NULL, NULL, 'Menu invoice management', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_INVOICE_CREATE', 'MENU', 'MENU_INVOICE', 'INVOICE_CREATE', 'Menu invoice create', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_INVOICE_LIST', 'MENU', 'MENU_INVOICE', 'INVOICE_VIEW', 'Menu invoice list', '2019-12-26 08:00:39.953', '2019-12-26 08:00:39.953');
+INSERT INTO public.application VALUES ('MENU_TMS', 'MENU', NULL, NULL, 'Menu TMS', '2020-03-01 18:46:31.727', '2020-03-01 18:40:20.478');
+INSERT INTO public.application VALUES ('MENU_SALES_ROUTE', 'MENU', NULL, NULL, 'Menu Sales Route', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_ROUTE_PLAN_CREATE', 'MENU', 'MENU_SALES_ROUTE', 'SALES_ROUTE_PLAN_CREATE', 'Menu Sales Route', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_GEO_ADDRESS', 'MENU', NULL, 'GEO_ADDRESS_ADMIN', 'Menu Geo and Address', '2020-03-23 11:14:44.243', '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT', 'MENU', NULL, 'SALES_ADMIN_VIEW_REPORT', 'Menu sales report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_CHART', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Chart report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_TABLE', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Table report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_CUSTOMER', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Customer based Revenue', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_SALESMAN', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Salesman based Revenue', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_DISTRIBUTOR', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Distributor based Revenue', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_PRODUCT', 'MENU', 'MENU_SALES_REPORT', 'SALES_ADMIN_VIEW_REPORT', 'Product based Revenue', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_FACILITY_REPORT', 'MENU', NULL, 'FACILITY_ADMIN_VIEW_REPORT', 'Menu sales report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_FACILITY_REPORT_INVENTORY_ITEM_ON_HAND', 'MENU', 'MENU_FACILITY_REPORT', 'FACILITY_ADMIN_VIEW_REPORT', 'Ton kho', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_IMPORT', 'MENU', 'MENU_FACILITY_REPORT', 'FACILITY_ADMIN_VIEW_REPORT', 'Nhap kho', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_SALES_REPORT_EXPORT', 'MENU', 'MENU_FACILITY_REPORT', 'FACILITY_ADMIN_VIEW_REPORT', 'Xuat kho', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_TMS_REPORT', 'MENU', NULL, 'TMS_ADMIN_VIEW_REPORT', 'Menu sales report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_TMS_REPORT_DRIVER', 'MENU', 'MENU_TMS_REPORT', 'TMS_ADMIN_VIEW_REPORT', 'Driver based report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_TMS_REPORT_CUSTOMER', 'MENU', 'MENU_TMS_REPORT', 'TMS_ADMIN_VIEW_REPORT', 'Customer based report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_TMS_REPORT_FACILITY', 'MENU', 'MENU_TMS_REPORT', 'TMS_ADMIN_VIEW_REPORT', 'Facility based', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_TMS_CONTAINER', 'MENU', NULL, 'TMS_CONTAINER_ADMIN', 'Menu sales report', NULL, '2020-03-01 18:54:50.488');
+INSERT INTO public.application VALUES ('MENU_DEPARTMENT', 'MENU', NULL, NULL, 'Menu user management', NULL, '2020-05-09 22:28:24.558581');
+INSERT INTO public.application VALUES ('MENU_DEPARTMENT_CREATE', 'MENU', 'MENU_DEPARTMENT', 'PERM_DEPARTMENT_CREATE', 'Menu department create', NULL, '2020-05-09 22:28:24.561581');
+INSERT INTO public.application VALUES ('MENU_DEPARTMENT_LIST', 'MENU', 'MENU_DEPARTMENT', 'PERM_DEPARTMENT_VIEW', 'Menu department list', NULL, '2020-05-09 22:28:24.563581');
+INSERT INTO public.application VALUES ('MENU_TMS_CREATE_DELIVERY_PLAN', 'MENU', 'MENU_TMS', 'DELIVERY_PLAN_CREATE', 'Menu Create Delivery Plan', NULL, '2020-03-01 18:41:10.706');
+INSERT INTO public.application VALUES ('MENU_CUSTOMER', 'MENU', NULL, NULL, 'Menu customer management', NULL, '2020-05-09 22:28:56.563412');
+INSERT INTO public.application VALUES ('MENU_CUSTOMER_CREATE', 'MENU', 'MENU_CUSTOMER', 'CUSTOMER_CREATE', 'Menu create customer management', NULL, '2020-05-09 22:28:56.574412');
+INSERT INTO public.application VALUES ('MENU_CUSTOMER_VIEW', 'MENU', 'MENU_CUSTOMER', 'CUSTOMER_VIEW', 'Menu customer management', NULL, '2020-05-09 22:28:56.576412');
+INSERT INTO public.application VALUES ('MENU_PRODUCT', 'MENU', NULL, NULL, 'Menu product management', NULL, '2020-05-09 22:30:07.329459');
+INSERT INTO public.application VALUES ('MENU_PRODUCT_CREATE', 'MENU', 'MENU_PRODUCT', 'PRODUCT_CREATE', 'Menu create product', NULL, '2020-05-09 22:30:07.331459');
+INSERT INTO public.application VALUES ('MENU_PRODUCT_VIEW', 'MENU', 'MENU_PRODUCT', 'PRODUCT_VIEW', 'Menu view product', NULL, '2020-05-09 22:30:07.333459');
+INSERT INTO public.application VALUES ('MENU_PRODUCT_PRICE_CREATE', 'MENU', 'MENU_PRODUCT', 'PRODUCT_PRICE_CREATE', 'Menu create product price', NULL, '2020-05-09 22:30:07.33546');
+INSERT INTO public.application VALUES ('MENU_PRODUCT_PRICE_VIEW', 'MENU', 'MENU_PRODUCT', 'PRODUCT_PRICE_VIEW', 'Menu view product price', NULL, '2020-05-09 22:30:07.33746');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE', 'MENU', NULL, NULL, 'Menu warehouse management', NULL, '2020-05-09 22:31:16.456413');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE_CREATE', 'MENU', 'MENU_WAREHOUSE', 'WAREHOUSE_CREATE', 'Menu create warehouse', NULL, '2020-05-09 22:31:16.460413');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE_VIEW', 'MENU', 'MENU_WAREHOUSE', 'WAREHOUSE_VIEW', 'Menu view warehouse', NULL, '2020-05-09 22:31:16.462413');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE_IMPORT', 'MENU', 'MENU_WAREHOUSE', 'WAREHOUSE_IMPORT', 'Menu import warehouse', NULL, '2020-05-09 22:31:16.464414');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE_EXPORT', 'MENU', 'MENU_WAREHOUSE', 'WAREHOUSE_EXPORT', 'Menu export warehouse', NULL, '2020-05-09 22:31:16.465414');
+INSERT INTO public.application VALUES ('MENU_WAREHOUSE_INVENTORY_ITEM', 'MENU', 'MENU_WAREHOUSE', 'WAREHOUSE_INVENTORY_ITEM', 'Menu inventory item warehouse', NULL, '2020-05-09 22:31:16.468414');
+INSERT INTO public.application VALUES ('MENU_RETAIL_OUTLET', 'MENU', NULL, NULL, 'Menu  about retail outlets', NULL, '2020-05-09 22:31:34.073421');
+INSERT INTO public.application VALUES ('MENU_CREATE_RETAIL_OUTLET', 'MENU', 'MENU_RETAIL_OUTLET', 'PERM_RETAILOUTLET_CREATE', 'Menu  create retail outlets', NULL, '2020-05-09 22:31:34.076421');
+INSERT INTO public.application VALUES ('MENU_VIEW_RETAIL_OUTLET', 'MENU', 'MENU_RETAIL_OUTLET', 'PERM_RETAILOUTLET_VIEW', 'Menu  view list retail outlets', NULL, '2020-05-09 22:31:34.078421');
+INSERT INTO public.application VALUES ('MENU_VIEW_ALL_RETAIL_OUTLET', 'MENU', 'MENU_RETAIL_OUTLET', 'PERM_RETAILOUTLET_VIEW_ALL', 'Menu  view list of all retail outlets', NULL, '2020-05-09 22:31:34.079421');
+INSERT INTO public.application VALUES ('MENU_DISTRIBUTOR', 'MENU', NULL, NULL, 'Menu  about distributors', NULL, '2020-05-09 22:31:34.081421');
+INSERT INTO public.application VALUES ('MENU_CREATE_DISTRIBUTOR', 'MENU', 'MENU_DISTRIBUTOR', 'PERM_DISTRIBUTOR_CREATE', 'Menu  create distributors', NULL, '2020-05-09 22:31:34.082421');
+INSERT INTO public.application VALUES ('MENU_VIEW_DISTRIBUTOR', 'MENU', 'MENU_DISTRIBUTOR', 'PERM_DISTRIBUTOR_VIEW', 'Menu  view list distributors', NULL, '2020-05-09 22:31:34.084421');
+INSERT INTO public.application VALUES ('MENU_VIEW_ALL_DISTRIBUTOR', 'MENU', 'MENU_DISTRIBUTOR', 'PERM_DISTRIBUTOR_VIEW_ALL', 'Menu  view list of all distributors', NULL, '2020-05-09 22:31:34.085421');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
