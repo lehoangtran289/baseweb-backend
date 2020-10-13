@@ -63,7 +63,7 @@ public class CovidReportController {
         return ResponseEntity.ok().body(page);
     }
 
-    @GetMapping("/covid/data-last-7days")
+    @GetMapping("/covid/data-last-nth-days")
     public ResponseEntity<?> getLast7DaysData(@RequestParam(defaultValue = "7") String days) throws IOException {
         return ResponseEntity.ok().body(service.getDataInMultipleDays(Integer.parseInt(days)));
     }
