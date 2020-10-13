@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,8 +29,8 @@ public class CovidReportController {
     private CovidDataService service;
 
     @GetMapping("/covid/data-list")
-    public ResponseEntity<?> getCovidData(Pageable pageable, @RequestParam(required = false) String search) {
-        List<LocationStat> dataList = service.getDataList();
+    public ResponseEntity<?> getCovidData(Pageable pageable, @RequestParam(required = false) String search) throws IOException {
+        List<LocationStat> dataList = service.getDataListLatestDay();
 
         for (Sort.Order order : pageable.getSort()) {
             if (order.getDirection().isDescending()) {
@@ -61,16 +63,21 @@ public class CovidReportController {
         return ResponseEntity.ok().body(page);
     }
 
+    @GetMapping("/covid/data-last-nth-days")
+    public ResponseEntity<?> getLast7DaysData(@RequestParam(defaultValue = "7") String days) throws IOException {
+        return ResponseEntity.ok().body(service.getDataInMultipleDays(Integer.parseInt(days)));
+    }
+
     @GetMapping("/covid/data-general")
-    public ResponseEntity<?> getGeneralData() {
-        List<LocationStat> dataList = service.getDataList();
+    public ResponseEntity<?> getGeneralData() throws IOException {
+        List<LocationStat> dataList = service.getDataListLatestDay();
         int totalCases = dataList.stream().mapToInt(LocationStat::getTotalCases).sum();
         int totalDeaths = dataList.stream().mapToInt(LocationStat::getTotalDeaths).sum();
         int totalRecovers = dataList.stream().mapToInt(LocationStat::getTotalRecovers).sum();
         int totalDiffFromPrevDay = dataList.stream().mapToInt(LocationStat::getDiffFromPrevDay).sum();
 
         CovidReponseModel response = new CovidReponseModel(totalCases, totalDeaths, totalRecovers,
-                totalDiffFromPrevDay);
+                totalDiffFromPrevDay, LocalDate.now());
         return ResponseEntity.ok().body(response);
     }
 
