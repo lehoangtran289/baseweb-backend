@@ -1,7 +1,7 @@
 package com.hust.baseweb.config;
 
 import com.hust.baseweb.entity.UserLogin;
-import com.hust.baseweb.service.BaseWebUserDetailService;
+import com.hust.baseweb.service.UserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,13 +21,18 @@ import org.springframework.web.filter.CorsFilter;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private BaseWebUserDetailService baseWebUserDetailService;
+    private UserDetailServiceImpl userDetailServiceImpl;
     private BasicAuthenticationEntryPoint basicAuthenticationEntryPoint;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.baseWebUserDetailService)
+        auth.userDetailsService(this.userDetailServiceImpl)
                 .passwordEncoder(UserLogin.PASSWORD_ENCODER);
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/covid/**");
     }
 
     @Override

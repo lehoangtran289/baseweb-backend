@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserLogin createAndSaveUserLogin(String userName, String password) {
+    public UserLogin createAndSaveUserLogin(String userName, String password) {     //test
         Party party = partyService.save(PartyType.PartyTypeEnum.PERSON.name());
         UserLogin userLogin = new UserLogin(userName, password, true, null);
         userLogin.setParty(party);
@@ -83,6 +83,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public Party createAndSaveUserLogin(PersonModel personModel) throws Exception {
         Party party = new Party(personModel.getPartyCode(),
                 partyTypeRepo.getOne(PartyType.PartyTypeEnum.PERSON.name()), "",
@@ -98,9 +99,10 @@ public class UserServiceImpl implements UserService {
 
         log.info("save, roles = " + personModel.getRoles().size());
 
-        UserLogin userLogin = new UserLogin(personModel.getUserName(), personModel.getPassword(), true, roles);
+        UserLogin userLogin = new UserLogin(personModel.getUserName(), personModel.getEmail(),
+                UserLogin.PASSWORD_ENCODER.encode(personModel.getPassword()), true, roles);
         userLogin.setParty(party);
-        if (userLoginRepo.existsById(personModel.getUserName())) {
+        if (userLoginRepo.existsByUserLoginIdOrEmail(personModel.getUserName(), personModel.getEmail())) {
             throw new RuntimeException();
         }
         userLoginRepo.save(userLogin);
@@ -159,6 +161,7 @@ public class UserServiceImpl implements UserService {
         try {
             createAndSaveUserLogin(new PersonModel(
                     userRegister.getUserLoginId(), userRegister.getPassword(),
+                    userRegister.getEmail(),
                     new ArrayList<>(), userRegister.getUserLoginId(),
                     userRegister.getFirstName(), userRegister.getLastName(), userRegister.getMiddleName(),
                     null, null));

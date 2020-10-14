@@ -9,9 +9,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,8 +23,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     private ApplicationTypeRepo applicationTypeRepo;
 
     @Override
-    public List<Application> getListByTypeAndPermission(String applicationType,
-                                                        List<SecurityPermission> permissions) {
+    public Set<Application> getListByTypeAndPermission(String applicationType,
+                                                       List<SecurityPermission> permissions) {
 
         String permissionStr = permissions.stream().map(SecurityPermission::getPermissionId)
                 .collect(Collectors.joining(", "));
@@ -33,22 +33,16 @@ public class ApplicationServiceImpl implements ApplicationService {
         List<Application> applicationList = applicationRepo.findByApplicationTypeAndSecurityPermissionIn(
                 applicationTypeRepo.getOne(applicationType), permissions);
 
-        List<Application> applicationList1 = applicationList.stream().map(Application::getModule)
-                .collect(Collectors.toList());
+        List<Application> applicationList1 =
+                applicationList.stream().filter(application -> application != null && application.getModule() != null)
+                        .map(Application::getModule)
+                        .collect(Collectors.toList());
         log.info("ApplicationList.sz = " + applicationList.size() + ", ApplicationList1.sz = " + applicationList1.size());
 
-        List<Application> applicationList2 = new ArrayList<>();
-        applicationList1.forEach(application -> {
-            if (application != null && application.getModule() != null)
-                applicationList2.add(application.getModule());
-        });
-
-        log.info("applicationModuleList2.sz = " + applicationList2.size());
-
         applicationList.addAll(applicationList1);
-        applicationList.addAll(applicationList2);
-        applicationList.removeIf(Objects::isNull);
-        return applicationList;
+        System.out.println(applicationList.stream().map(Application::getApplicationId).collect(Collectors.joining(", ")));
+
+        return new HashSet<>(applicationList);
     }
 
 }

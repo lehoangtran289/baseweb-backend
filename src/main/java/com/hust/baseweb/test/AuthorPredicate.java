@@ -6,6 +6,8 @@ import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.core.types.dsl.StringPath;
 
+import java.util.regex.Pattern;
+
 public class AuthorPredicate {
     private SearchCriteria criteria;
 
@@ -36,8 +38,12 @@ public class AuthorPredicate {
         return null;
     }
 
-    private boolean isNumeric(final Object str) {
-        return str instanceof Number;
+    private boolean isNumeric(String strNum) {
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
     }
 
     public SearchCriteria getCriteria() {

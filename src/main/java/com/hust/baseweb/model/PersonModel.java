@@ -16,6 +16,7 @@ import java.util.List;
 public class PersonModel {
     private String userName;
     private String password;
+    private String email;
     private List<String> roles;
     private String partyCode;
     private String firstName;
@@ -23,5 +24,4 @@ public class PersonModel {
     private String middleName;
     private String gender;
     private Date birthDate;
-
 }

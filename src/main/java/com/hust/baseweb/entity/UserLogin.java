@@ -68,6 +68,14 @@ public class UserLogin {
         this.roles = roles;
     }
 
+    public UserLogin(String userLoginId, String email, String password, boolean enabled, Set<SecurityGroup> roles) {
+        this.userLoginId = userLoginId;
+        this.password = password;
+        this.email = email;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
+
     public UserLogin(String password, String passwordHint, boolean isSystem, boolean enabled,
                      boolean hasLoggedOut, boolean requirePasswordChange, Integer successiveFailedLogins,
                      Date disabledDateTime) {
