@@ -3,6 +3,7 @@ package com.hust.baseweb.application.covidtracker.controllers;
 import com.hust.baseweb.application.covidtracker.models.CovidReponseModel;
 import com.hust.baseweb.application.covidtracker.models.LocationStat;
 import com.hust.baseweb.application.covidtracker.services.CovidDataService;
+import com.hust.baseweb.application.covidtracker.services.CovidDataServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
