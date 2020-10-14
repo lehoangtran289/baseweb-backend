@@ -1,7 +1,7 @@
 package com.hust.baseweb.config;
 
 import com.hust.baseweb.entity.UserLogin;
-import com.hust.baseweb.service.BaseWebUserDetailService;
+import com.hust.baseweb.service.UserDetailServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -21,12 +21,12 @@ import org.springframework.web.filter.CorsFilter;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private BaseWebUserDetailService baseWebUserDetailService;
+    private UserDetailServiceImpl userDetailServiceImpl;
     private BasicAuthenticationEntryPoint basicAuthenticationEntryPoint;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.baseWebUserDetailService)
+        auth.userDetailsService(this.userDetailServiceImpl)
                 .passwordEncoder(UserLogin.PASSWORD_ENCODER);
     }
 

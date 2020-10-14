@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class BaseWebUserDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
     private UserLoginRepo userLoginRepo;
 
     @Override

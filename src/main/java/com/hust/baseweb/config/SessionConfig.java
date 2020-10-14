@@ -34,6 +34,9 @@ public class SessionConfig {
         return new RedisSessionRepository(sessionRedisOperations);
     }
 
+    /**
+     * return Spring Session id in HTTP header X-Auth-Token and expects it in the same on each request.
+     */
     @Bean
     public HttpSessionIdResolver httpSessionIdResolver() {
         return HeaderHttpSessionIdResolver.xAuthToken();
