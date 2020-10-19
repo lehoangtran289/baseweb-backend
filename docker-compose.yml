@@ -5,13 +5,13 @@ volumes:
   
 services:
     
-#    nginx:
-#        container_name: gateway
-#        image: gateway:latest
-#        ports:
-#          - '80:80'
-#        volumes:
-#          - /var/run/docker.sock:/tmp/docker.sock:ro
+    nginx:
+        container_name: gateway
+        image: gateway:latest
+        ports:
+          - '80:80'
+        volumes:
+          - /var/run/docker.sock:/tmp/docker.sock:ro
 
     dms:
         container_name: dms
@@ -20,10 +20,10 @@ services:
           - 8080:8080
         environment:
           SPRING_DATASOURCE_URL: jdbc:postgresql://pgsql:5432/baseweb2
-#        restart: always
         links:
           - "pgsql:pgsql"
           - "redis:redis"
+#        restart: always
 
     pgsql:
       image: postgres:9.5
@@ -36,12 +36,14 @@ services:
       volumes:
         - baseweb_data:/var/lib/postgresql/data
       ports:
-        - 5000:5432
+        - 5432:5432
 #      restart: always
 
-#    basewebfrontend:
-#        container_name: basewebfrontend
-#        image: basewebfrontend:latest
+    basewebfrontend:
+        container_name: basewebfrontend
+        image: basewebfrontend:latest
+        ports:
+          - 3000:3000
 #        expose:
 #        - "80"
         
