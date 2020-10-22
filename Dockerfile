@@ -1,14 +1,29 @@
+#FROM openjdk:8-jdk-alpine
+#ARG JAR_FILE=target/*.jar
+#
+#VOLUME /tmp
+#COPY . /tmp
+#COPY covidreports covidreports
+#COPY ${JAR_FILE} app.jar
+#
+#ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+# -----------
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
+FROM maven:3.6.3-jdk-11-slim
+WORKDIR /app
 
-VOLUME /tmp
-COPY . /tmp
-COPY covidreports covidreports
-COPY ${JAR_FILE} app.jar
+COPY . .
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+RUN chmod 777 mvnw
+RUN ./mvnw dependency:go-offline
 
-## used to run Maven and build the fat jar, then unpack it.
+CMD ["mvn", "spring-boot:run"]
+
+# -----------
+
+# used to run Maven and build the fat jar, then unpack it.
 #FROM openjdk:8-jdk-alpine as build
 #WORKDIR /workspace/app
 #
@@ -19,9 +34,9 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 #RUN chmod 777 mvnw
 #RUN ./mvnw dependency:go-offline
 #
-#
 #COPY src src
 #COPY covidreports covidreports
+#
 #RUN ./mvnw clean install -DskipTests
 #RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 #
