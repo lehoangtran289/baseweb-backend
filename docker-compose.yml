@@ -13,19 +13,20 @@ services:
 #    volumes:
 #      - /var/run/docker.sock:/tmp/docker.sock:ro
 
-  webserver:
-    build: .
-    container_name: webserver
-    image: webserver:latest
+  web:
+#    build: .
+#    container_name: webserver
+    image: web:latest
+    volumes:
+      - ./:/workspace/app
     ports:
       - 8080:8080
-    volumes:
-      - .:.
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://pgsql:5432/webdb
-    links:
-      - "pgsql:pgsql"
-      - "redis:redis"
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - pgsql
   #        restart: always
 
   pgsql:
@@ -37,10 +38,10 @@ services:
       - POSTGRES_DB=webdb
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - web_data:/var/lib/postgresql/data
+      - .docker/data/db:/data/db
     ports:
       - 5432:5432
-  #      restart: always
+    restart: unless-stopped
 
 #  webclient:
 #    container_name: webclient
@@ -51,14 +52,8 @@ services:
   redis:
     container_name: redis
     image: "redis:alpine"
+    volumes:
+      - .docker/data/redis:/data
     command: [ "redis-server" ]
     ports:
       - "6379:6379"
-
-#    mongodb:
-#        container_name: mongodb
-#        image: mongo:latest
-#        ports:
-#          - 27017:27017
-#        volumes:
-#          - baseweb_data:/var/lib/mongodb/data
