@@ -1,11 +1,11 @@
 # POSTGRES_DB: baseweb_dms config database name if in local
 SERVICE_HOST: localhost
 SERVICE_PORT: 8080
-SQL_DB_HOST: 192.168.99.100
+SQL_DB_HOST: ec2-54-234-44-238.compute-1.amazonaws.com
 SQL_DB_PORT: 5432
-SQL_DB_USER: postgres
-SQL_DB_PASS: 123456
-POSTGRES_DB: webdb
+SQL_DB_USER: jlxjammvroiomz
+SQL_DB_PASS: be8fd8650614977d00dacb36584f42be36ed2a260686aa66ca200eb0d0a7dbe2
+POSTGRES_DB: d646r1abvh40hu
 
 server:
   servlet:
@@ -23,7 +23,7 @@ spring:
     port: 6379
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${SQL_DB_HOST}:${SQL_DB_PORT}/${POSTGRES_DB}
+    url: postgres://jlxjammvroiomz:be8fd8650614977d00dacb36584f42be36ed2a260686aa66ca200eb0d0a7dbe2@ec2-54-234-44-238.compute-1.amazonaws.com:5432/d646r1abvh40hu
     username: ${SQL_DB_USER}
     password: ${SQL_DB_PASS}
 
