@@ -3,9 +3,10 @@ SERVICE_HOST: localhost
 SERVICE_PORT: 8080
 SQL_DB_HOST: ec2-54-234-44-238.compute-1.amazonaws.com
 SQL_DB_PORT: 5432
-SQL_DB_USER: jlxjammvroiomz
-SQL_DB_PASS: be8fd8650614977d00dacb36584f42be36ed2a260686aa66ca200eb0d0a7dbe2
 POSTGRES_DB: d646r1abvh40hu
+JDBC_DATABASE_USERNAME: jlxjammvroiomz
+JDBC_DATABASE_PASSWORD: be8fd8650614977d00dacb36584f42be36ed2a260686aa66ca200eb0d0a7dbe2
+JDBC_DATABASE_URL: jdbc:postgresql://ec2-54-234-44-238.compute-1.amazonaws.com:5432/d646r1abvh40hu
 
 server:
   servlet:
@@ -23,9 +24,9 @@ spring:
     port: 6379
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: postgres://jlxjammvroiomz:be8fd8650614977d00dacb36584f42be36ed2a260686aa66ca200eb0d0a7dbe2@ec2-54-234-44-238.compute-1.amazonaws.com:5432/d646r1abvh40hu
-    username: ${SQL_DB_USER}
-    password: ${SQL_DB_PASS}
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
 
 logging:
   file:
