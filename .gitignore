@@ -4,7 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 logs/
-src/main/resources/application.yml
+src/main/resources/*.yml
+dump.rdb
+covidreports/
 
 ### STS ###
 .apt_generated
